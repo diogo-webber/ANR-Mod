@@ -1,6 +1,8 @@
 local ToLoad = {
 	Prefabs = {
 		"multiplayer_portal",
+		"anr_rocks",
+		"rock_break_fx",
 	},
 	
 	Assets = {
