@@ -8,7 +8,7 @@ local PATCHES =
 	
 	PREFABS = {
 		--table_example = {"example1", "example2"},
-		--example = "example",
+		maxwellintro = "maxwellintro",
 	},
 	
 	PLAYERS = {
@@ -62,7 +62,7 @@ for path, data in pairs(PATCHES.PREFABS) do
 	end
 end
 
---AddPlayerPostInit(GenericPlayerFn)
+AddPlayerPostInit(GenericPlayerFn)
 
 for _, name in ipairs(PATCHES.STATEGRAPHS) do
 	AddStategraphPostInit(name, require("patches/stategraphs/"..name))

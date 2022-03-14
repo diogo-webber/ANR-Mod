@@ -1,4 +1,3 @@
-
 name = "A New Reign Mod"
 description = "A New Reign Mod"
 author = "Leonidas IV, Asura"
