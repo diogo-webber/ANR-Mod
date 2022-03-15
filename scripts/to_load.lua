@@ -9,6 +9,8 @@ local ToLoad = {
 		"grassgekko",
 		"grassgekkoherd",
 		"juiceberrybush",
+		"dug_juicyberrybush",
+		"anr_veggies",
 	},
 	
 	Assets = {
