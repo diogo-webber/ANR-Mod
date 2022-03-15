@@ -1,3 +1,6 @@
+-------------------------------------ACTIONS
+STRINGS.ACTIONS.HAUNT = "Haunt"
+-------------------------------------
 STRINGS.NAMES.ROCK_MOON = "Boulder"
 STRINGS.NAMES.ROCK_MOON_SHELL = "Suspicious Boulder"
 STRINGS.NAMES.MOONROCKNUGGET = "Moon Rock"

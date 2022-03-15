@@ -2,14 +2,6 @@ local function DefaultOnHauntFn(inst, haunter)
     return true
 end
 
-local function onhaunted(self, haunted)
-    if haunted then
-        self.inst:AddTag("haunted")
-    else
-        self.inst:RemoveTag("haunted")
-    end
-end
-
 local Hauntable = Class(function(self, inst)
     self.inst = inst
 
@@ -30,21 +22,19 @@ local Hauntable = Class(function(self, inst)
 
     self.usefx = true
     self.flicker = "off"
-end,
-nil,
-{
-    haunted = onhaunted,
-})
+end)
 
 function Hauntable:SetOnHauntFn(fn)
     -- This function, whatever it is, should return true for successful haunts (to trigger haunter effects) and nil or false for unsuccessful haunts
     -- A successful haunt should be determined on a per-entity basis (i.e. rates/conditions might vary for different ents)
     self.onhaunt = fn
+    self.inst:AddTag("haunted")
 end
 
 -- Function that fires when something is done being haunted (i.e. its haunt expires)
 function Hauntable:SetOnUnHauntFn(fn)
     self.onunhaunt = fn
+    self.inst:RemoveTag("haunted")
 end
 
 function Hauntable:SetHauntValue(val)
@@ -154,6 +144,12 @@ function Hauntable:OnRemoveFromEntity()
     self:StopFX()
     self:StopShaderFX()
     self.inst:RemoveTag("haunted")
+end
+
+function Hauntable:CollectSceneActions(doer, actions)
+	if not (self.inst:HasTag("haunted") or self.inst:HasTag("catchable")) and doer:HasTag("playerghost") then
+		table.insert(actions, ACTIONS.HAUNT)
+	end
 end
 
 return Hauntable

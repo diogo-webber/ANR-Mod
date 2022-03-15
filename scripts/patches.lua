@@ -3,7 +3,10 @@ local GenericPlayerFn = require("patches/prefabs/player")
 local PATCHES = 
 {
 	COMPONENTS = {
-		--"example",
+		"freezable",
+		"moisture",
+		"health",
+		"playeractionpicker",
 	},
 	
 	PREFABS = {
@@ -38,7 +41,7 @@ local PATCHES =
 		--"wanda",
 	},
 	STATEGRAPHS = {
-		--"wilson",
+		"wilson",
 	}
 }
 
@@ -63,6 +66,11 @@ for path, data in pairs(PATCHES.PREFABS) do
 end
 
 AddPlayerPostInit(GenericPlayerFn)
+
+for _, file in ipairs(PATCHES.COMPONENTS) do
+	local fn = require("patches/components/"..file)
+	AddComponentPostInit(file, fn)
+end
 
 for _, name in ipairs(PATCHES.STATEGRAPHS) do
 	AddStategraphPostInit(name, require("patches/stategraphs/"..name))

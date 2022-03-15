@@ -9,6 +9,64 @@ function _G.AnimState:SetHaunted(ishaunted, ...)
 	return ishaunted		
 end
 -------------------------------------------------------------------------------------------
+--"Oooh" string stuff
+local Oooh_endings = { "h", "oh", "ohh" }
+local Oooh_punc = { ".", "?", "!" }
+
+local function ooohstart(isstart)
+    local str = isstart and "O" or "o"
+    local l = math.random(2, 4)
+    for i = 2, l do
+        str = str..(math.random() > 0.3 and "o" or "O")
+    end
+    return str
+end
+
+local function ooohspace()
+    local c = math.random()
+    local str =
+        (c <= .1 and "! ") or
+        (c <= .2 and ". ") or
+        (c <= .3 and "? ") or
+        (c <= .4 and ", ") or
+        " "
+    return str, c <= .3
+end
+
+local function ooohend()
+    return Oooh_endings[math.random(#Oooh_endings)]
+end
+
+local function ooohpunc()
+    return Oooh_punc[math.random(#Oooh_punc)]
+end
+
+local function CraftOooh() -- Ghost speech!
+    local isstart = true
+    local length = math.random(6)
+    local str = ""
+    for i = 1, length do
+        str = str..ooohstart(isstart)..ooohend()
+        if i ~= length then
+            local space
+            space, isstart = ooohspace()
+            str = str..space
+        end
+    end
+    return str..ooohpunc()
+end
+local _GetSpecialCharacterString = _G.GetSpecialCharacterString
+function _G.GetSpecialCharacterString(character, ...)
+    if character == nil then
+        return nil
+    end
+
+    character = _G.GetPlayer():HasTag("playerghost") and "ghost" or string.lower(character)
+
+    return character == "ghost" and CraftOooh() or _GetSpecialCharacterString(character, ...)
+end
+
+-------------------------------------------------------------------------------------------
 function _G.MakeHauntable(inst, cooldown, haunt_value)
     if not inst.components.hauntable then inst:AddComponent("hauntable") end
     inst.components.hauntable.cooldown = cooldown or TUNING.HAUNT_COOLDOWN_SMALL

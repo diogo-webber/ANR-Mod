@@ -21,6 +21,12 @@ local perish_warp = 1
 
 -----------------------------------------------------------------------
 
+TUNING.PORTAL_HEALTH_PENALTY = 0.25
+TUNING.HEART_HEALTH_PENALTY = 0.125
+
+TUNING.MAXIMUM_HEALTH_PENALTY = 0.75
+TUNING.MAXIMUM_SANITY_PENALTY = 0.9
+
 TUNING.HAUNT_COOLDOWN_TINY = 1
 TUNING.HAUNT_COOLDOWN_SMALL = 3
 TUNING.HAUNT_COOLDOWN_MEDIUM = 5
@@ -51,6 +57,8 @@ TUNING.HAUNT_PANIC_TIME_SMALL = 3
 TUNING.HAUNT_PANIC_TIME_MEDIUM = 5
 TUNING.HAUNT_PANIC_TIME_LARGE = 7
 
+TUNING.GHOST_LIGHT_OVERRIDE = .5
+
 TUNING.PETRIFIED_TREE_SMALL = 2
 TUNING.PETRIFIED_TREE_NORMAL = 3
 TUNING.PETRIFIED_TREE_TALL = 4
@@ -77,38 +85,3 @@ TUNING.EVERGREEN_REGROWTH = {
 
 TUNING.REPAIR_MOONROCK_NUGGET_HEALTH = 80/2
 TUNING.REPAIR_MOONROCK_NUGGET_WORK = 2
-
-_G.MATERIALS =
-{
-    WOOD = "wood",
-    STONE = "stone",
-    HAY = "hay",
-    THULECITE = "thulecite",
-    GEM = "gem",
-    GEARS = "gears",
-    MOONROCK = "moonrock",
-    ICE = "ice",
-    SCULPTURE = "sculpture",
-    FOSSIL = "fossil",
-    MOON_ALTAR = "moon_altar",
-}
-
-_G.FOODTYPE =
-{
-    GENERIC = "GENERIC",
-    MEAT = "MEAT",
-    VEGGIE = "VEGGIE",
-    ELEMENTAL = "ELEMENTAL",
-    GEARS = "GEARS",
-    HORRIBLE = "HORRIBLE",
-    INSECT = "INSECT",
-    SEEDS = "SEEDS",
-    BERRY = "BERRY", --hack for smallbird; berries are actually part of veggie
-    RAW = "RAW", -- things which some animals can eat off the ground, but players need to cook
-    BURNT = "BURNT", --For lavae.
-    ROUGHAGE = "ROUGHAGE",
-	WOOD = "WOOD",
-    GOODIES = "GOODIES",
-    MONSTER = "MONSTER", -- Added in for woby, uses the secondary foodype originally added for the berries
-}
-
