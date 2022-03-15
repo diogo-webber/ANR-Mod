@@ -3,7 +3,12 @@ env.AddPlayerPostInit = function(fn)
         if inst and inst:HasTag("player") then fn(inst) end
     end)
 end
-
+-------------------------------------------------------------------------------------------
+function _G.AnimState:SetHaunted(ishaunted, ...)
+    print("IsHaunted", ishaunted)
+	return ishaunted		
+end
+-------------------------------------------------------------------------------------------
 function _G.MakeHauntable(inst, cooldown, haunt_value)
     if not inst.components.hauntable then inst:AddComponent("hauntable") end
     inst.components.hauntable.cooldown = cooldown or TUNING.HAUNT_COOLDOWN_SMALL

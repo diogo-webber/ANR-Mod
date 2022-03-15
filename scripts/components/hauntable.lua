@@ -112,16 +112,14 @@ function Hauntable:DoHaunt(doer)
     end
 end
 
---Leo: AnimState:SetHaunted == nil, so do nothing for moment
-
 function Hauntable:StartShaderFx()
-    --self.inst.AnimState:SetHaunted(true)
+    self.inst.AnimState:SetHaunted(true)
 end
 
 function Hauntable:StopShaderFX()
-    --if self.inst:IsValid() then
-        --self.inst.AnimState:SetHaunted(false)
-    --end
+    if self.inst:IsValid() then
+        self.inst.AnimState:SetHaunted(false)
+    end
 end
 
 function Hauntable:OnUpdate(dt)
