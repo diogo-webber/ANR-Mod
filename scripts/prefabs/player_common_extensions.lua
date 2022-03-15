@@ -179,9 +179,9 @@ local function CommonActualRez(inst)
     inst.components.freezable:SetResistance(4)
     inst.components.freezable:SetDefaultWearOffTime(TUNING.PLAYER_FREEZE_WEAR_OFF_TIME)
 
-    inst:AddComponent("grogginess")
-    inst.components.grogginess:SetResistance(3)
-    inst.components.grogginess:SetKnockOutTest(ShouldKnockout)
+    --inst:AddComponent("grogginess")
+    --inst.components.grogginess:SetResistance(3)
+    --inst.components.grogginess:SetKnockOutTest(ShouldKnockout)
 
     inst.components.moisture:ForceDry(false, inst)
 
@@ -232,7 +232,8 @@ local function DoActualRez(inst, source, item)
 
     inst.Physics:Teleport(x, y, z)
 
-    --inst.player_classified:SetGhostMode(false)
+    inst.HUD.controls.status:SetGhostMode(false)
+    GetWorld().components.colourcubemanager:SetOverrideColourCube(nil)
 
     -- Resurrector is involved
     if source ~= nil then
@@ -256,8 +257,8 @@ local function DoActualRez(inst, source, item)
         elseif source.prefab == "resurrectionstatue" then
             inst.sg:GoToState("rebirth")
         elseif source:HasTag("multiplayer_portal") then
-            inst.components.health:DeltaPenalty(TUNING.PORTAL_HEALTH_PENALTY)
-
+            --inst.components.health:DeltaPenalty(TUNING.PORTAL_HEALTH_PENALTY)
+            --TODO
             source:PushEvent("rez_player")
             inst.sg:GoToState("portal_rez")
         end
@@ -294,12 +295,11 @@ local function DoActualRez(inst, source, item)
     inst.Light:SetColour(255 / 255, 255 / 255, 236 / 255)
     inst.Light:Enable(false)
 
-    MakeCharacterPhysics(inst, 75, .5)
+    ChangeToCharacterPhysics(inst)
 
     CommonActualRez(inst)
 
     inst:RemoveTag("playerghost")
-    inst.Network:RemoveUserFlag(USERFLAGS.IS_GHOST)
 
     inst:PushEvent("ms_respawnedfromghost")
 end
@@ -307,7 +307,7 @@ end
 local function DoRezDelay(inst, source, delay)
     if not source:IsValid() or source:IsInLimbo() then
         --Revert OnRespawnFromGhost state
-        inst:ShowHUD(true)
+        inst.HUD:Show()
         if inst.components.playercontroller ~= nil then
             inst.components.playercontroller:Enable(true)
         end
@@ -316,7 +316,7 @@ local function DoRezDelay(inst, source, delay)
         --Revert DoMoveToRezSource or DoMoveToRezPosition state
         inst:Show()
         inst.Light:Enable(true)
-        inst:SetCameraDistance()
+        TheCamera:SetDefault()
         inst.sg:GoToState("haunt")
         --
     elseif delay == nil or delay <= 0 then
@@ -331,7 +331,7 @@ end
 local function DoMoveToRezSource(inst, source, delay)
     if not source:IsValid() or source:IsInLimbo() then
         --Revert OnRespawnFromGhost state
-        inst:ShowHUD(true)
+        inst.HUD:Show()
         if inst.components.playercontroller ~= nil then
             inst.components.playercontroller:Enable(true)
         end
@@ -348,7 +348,7 @@ local function DoMoveToRezSource(inst, source, delay)
     inst:Hide()
     inst.Light:Enable(false)
     inst.Physics:Teleport(source.Transform:GetWorldPosition())
-    inst:SetCameraDistance(24)
+    TheCamera:SetDistance(24)
     if inst.sg.currentstate.name == "remoteresurrect" then
         inst:SnapCamera()
     end
@@ -369,7 +369,7 @@ local function DoMoveToRezPosition(inst, item, delay, fade_in)
 		if inst.last_death_shardid == TheShard:GetShardId() then
 			inst.Physics:Teleport(inst.last_death_position:Get())
 			inst:SnapCamera()
-			inst:SetCameraDistance(24)
+            TheCamera:SetDistance(24)
 
 			if inst.sg.statemem.faded or fade_in then
 				inst.sg.statemem.faded = false
@@ -396,7 +396,7 @@ local function OnRespawnFromGhost(inst, data) -- from ListenForEvent "respawnfro
     inst.deathcause = nil
     inst.deathpkname = nil
     inst.deathbypet = nil
-    inst:ShowHUD(false)
+    inst.HUD:Hide()
     if inst.components.playercontroller ~= nil then
         inst.components.playercontroller:Enable(false)
     end
@@ -454,7 +454,7 @@ local function CommonPlayerDeath(inst)
     inst:RemoveComponent("freezable")
     inst:RemoveComponent("propagator")
 
-    inst:RemoveComponent("grogginess")
+    --inst:RemoveComponent("grogginess")
 
     inst.components.moisture:ForceDry(true, inst)
 
@@ -523,7 +523,7 @@ local function OnMakePlayerGhost(inst, data)
 
     CommonPlayerDeath(inst)
 
-    --MakeGhostPhysics(inst, 1, .5)
+    ChangeToGhostPhysics(inst)
     inst.Physics:Teleport(x, y, z)
 
     inst:AddTag("playerghost")
@@ -536,7 +536,8 @@ local function OnMakePlayerGhost(inst, data)
     if inst.components.playercontroller ~= nil then
         inst.components.playercontroller:Enable(true)
     end
-    --inst.player_classified:SetGhostMode(true)
+    inst.HUD.controls.status:SetGhostMode(true)
+    GetWorld().components.colourcubemanager:SetOverrideColourCube(softresolvefilepath("images/colour_cubes/ghost_cc.tex"))
 
     ConfigureGhostLocomotor(inst)
     ConfigureGhostActions(inst)
