@@ -6,6 +6,9 @@ local ToLoad = {
 		"twiggytree",
 		"moonrocknugget",
 		"twiggy_nut",
+		"grassgekko",
+		"grassgekkoherd",
+		"juiceberrybush",
 	},
 	
 	Assets = {
