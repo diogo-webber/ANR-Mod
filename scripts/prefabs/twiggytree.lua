@@ -513,7 +513,7 @@ local REMOVABLE =
     ["charcoal"] = true,
 }
 
-local DECAYREMOVE_MUST_TAGS = { "_inventoryitem" }
+local DECAYREMOVE_MUST_TAGS = { "isinventoryitem" }
 local DECAYREMOVE_CANT_TAGS = { "INLIMBO", "fire" }
 local function OnTimerDone(inst, data)
     if data.name == "decay" then

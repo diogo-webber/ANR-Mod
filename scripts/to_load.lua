@@ -4,6 +4,8 @@ local ToLoad = {
 		"anr_rocks",
 		"rock_break_fx",
 		"twiggytree",
+		"moonrocknugget",
+		"twiggy_nut",
 	},
 	
 	Assets = {

@@ -1,4 +1,4 @@
-CONSTRUCTION_PLANS =
+_G.CONSTRUCTION_PLANS =
 {
     ["multiplayer_portal_moonrock_constr"] = { Ingredient("purplemooneye", 1), Ingredient("moonrocknugget", 20) },
 	--["mermthrone_construction"] = { Ingredient("kelp", 20), Ingredient("pigskin", 10), Ingredient("beefalowool", 15) },
