@@ -40,18 +40,9 @@ local PATCHES =
 		--"wortox",
 		--"wanda",
 	},
-
 	STATEGRAPHS = {
 		"wilson",
-	},
-
-	SCREENS = {
-		--"exmaple",
-	},
-
-	WIDGETS = {
-		"statusdisplays",
-	},
+	}
 }
 
 for i, prefab in ipairs(PATCHES.PLAYERS) do
@@ -84,17 +75,3 @@ end
 for _, name in ipairs(PATCHES.STATEGRAPHS) do
 	AddStategraphPostInit(name, require("patches/stategraphs/"..name))
 end
-
-local states = require("stategraphs")
-for i, state in ipairs(states) do
-	AddStategraphState("wilson", state)
-end
-
-for _, name in ipairs(PATCHES.SCREENS) do
-	AddClassPostConstruct("screens/"..name, require("patches/screens/"..name))
-end
-
-for _, name in ipairs(PATCHES.WIDGETS) do
-	AddClassPostConstruct("widgets/"..name, require("patches/widgets/"..name))
-end
-

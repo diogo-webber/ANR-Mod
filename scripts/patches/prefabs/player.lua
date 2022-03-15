@@ -41,6 +41,7 @@ return function(inst)
                     inst.HUD.controls.crafttabs:Hide()                
                 end)
             end
+            print("loaded2", data.isghost)
 		end
 		return val
 	end
