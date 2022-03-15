@@ -1,5 +1,7 @@
 -------------------------------------ACTIONS
 STRINGS.ACTIONS.HAUNT = "Haunt"
+-------------------------------------UI
+STRINGS.UI.HUD.ACTIVATE_RESURRECTION = "Activate Meat Effigy"
 -------------------------------------
 STRINGS.NAMES.ROCK_MOON = "Boulder"
 STRINGS.NAMES.ROCK_MOON_SHELL = "Suspicious Boulder"

@@ -9,6 +9,12 @@ function _G.AnimState:SetHaunted(ishaunted, ...)
 	return ishaunted		
 end
 -------------------------------------------------------------------------------------------
+function _G.EntityScript:GetBasicDisplayName()
+    return (self.displaynamefn ~= nil and self:displaynamefn())
+        or (self.nameoverride ~= nil and STRINGS.NAMES[string.upper(self.nameoverride)])
+        or self.name
+end
+-------------------------------------------------------------------------------------------
 --"Oooh" string stuff
 local Oooh_endings = { "h", "oh", "ohh" }
 local Oooh_punc = { ".", "?", "!" }
