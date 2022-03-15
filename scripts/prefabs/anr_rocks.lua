@@ -153,7 +153,6 @@ local function baserock_fn(bank, build, anim, icon, tag, multcolour)
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     inst.entity:AddMiniMapEntity()
-    AddMinimapAtlas("minimap/minimap_data_anr.xml")
 
     MakeObstaclePhysics(inst, 1)
 

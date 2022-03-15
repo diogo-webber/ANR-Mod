@@ -1,3 +1,26 @@
+local seg_time = 30
+local total_day_time = seg_time*16
+
+local day_segs = 10
+local dusk_segs = 4
+local night_segs = 2
+
+--default day composition. changes in winter, etc
+local day_time = seg_time * day_segs
+local dusk_time = seg_time * dusk_segs
+local night_time = seg_time * night_segs
+
+local wilson_attack = 34
+local wilson_health = 150
+local calories_per_day = 75
+
+local wilson_attack_period = .5
+-----------------------
+
+local perish_warp = 1
+
+-----------------------------------------------------------------------
+
 TUNING.HAUNT_COOLDOWN_TINY = 1
 TUNING.HAUNT_COOLDOWN_SMALL = 3
 TUNING.HAUNT_COOLDOWN_MEDIUM = 5
@@ -32,3 +55,23 @@ TUNING.PETRIFIED_TREE_SMALL = 2
 TUNING.PETRIFIED_TREE_NORMAL = 3
 TUNING.PETRIFIED_TREE_TALL = 4
 TUNING.PETRIFIED_TREE_OLD = 1
+
+TUNING.TWIGGYTREE_REGROWTH_TIME_MULT = 1
+TUNING.TWIGGY_TREE_GROW_TIME =
+{
+    {base=1.5*day_time, random=0.5*day_time},   --short
+    {base=3*day_time, random=1*day_time},   --normal
+    {base=3*day_time, random=1*day_time},   --tall
+    {base=5*day_time, random=0.5*day_time}   --old
+}
+TUNING.TWIGGY_TREE_REGROWTH = {
+    OFFSPRING_TIME = total_day_time * 8,
+    DESOLATION_RESPAWN_TIME = total_day_time * 50,
+    DEAD_DECAY_TIME = total_day_time * 30,
+}
+TUNING.EVERGREEN_REGROWTH = {
+    OFFSPRING_TIME = total_day_time * 5,
+    DESOLATION_RESPAWN_TIME = total_day_time * 50,
+    DEAD_DECAY_TIME = total_day_time * 30,
+}
+

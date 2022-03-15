@@ -3,6 +3,7 @@ local ToLoad = {
 		"multiplayer_portal",
 		"anr_rocks",
 		"rock_break_fx",
+		"twiggytree",
 	},
 	
 	Assets = {
