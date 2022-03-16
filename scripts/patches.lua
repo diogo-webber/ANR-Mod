@@ -9,6 +9,7 @@ local PATCHES =
 		"health",
 		"playeractionpicker",
 		"inventoryitem",
+		"combat",
 	},
 	
 	PREFABS = {
