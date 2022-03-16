@@ -1,6 +1,7 @@
 local ex_fns = require "prefabs/player_common_extensions"
 
 return function(inst)
+    inst.skeleton_prefab = "skeleton"
     inst.ghostenabled = true
     
     inst:AddComponent("colourtweener")

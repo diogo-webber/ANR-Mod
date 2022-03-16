@@ -143,8 +143,8 @@ local function OnPlayerDeath(inst, data)
         end
     end
 
-    inst:DoTaskInTime(1.5, function()
-        inst:PushEvent("makeplayerghost") -- if we are not on valid ground then don't drop a skeleton -- { skeleton = GetWorld().Map:IsPassableAtPoint(inst.Transform:GetWorldPosition()) }
+    inst:DoTaskInTime(2, function()
+        inst:PushEvent("makeplayerghost", { skeleton = true }) -- if we are not on valid ground then don't drop a skeleton -- 
     end)
 end
 
