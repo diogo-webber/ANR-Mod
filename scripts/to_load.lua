@@ -19,6 +19,16 @@ local ToLoad = {
 	Assets = {
 		Asset("IMAGE", "images/colour_cubes/ghost_cc.tex"),
 
+		Asset("IMAGE", "images/hud_anr.tex" ),
+		Asset("ATLAS", "images/hud_anr.xml" ),
+		Asset("IMAGE", "images/hud2_anr.tex" ),
+		Asset("ATLAS", "images/hud2_anr.xml" ),
+
+		Asset("IMAGE", "images/inventoryimages1_anr.tex" ),
+		Asset("ATLAS", "images/inventoryimages1_anr.xml" ),
+		Asset("IMAGE", "images/inventoryimages2_anr.tex" ),
+		Asset("ATLAS", "images/inventoryimages2_anr.xml" ),
+
 		Asset("IMAGE", "minimap/minimap_atlas_anr.tex" ),
 		Asset("ATLAS", "minimap/minimap_data_anr.xml" ),
 
