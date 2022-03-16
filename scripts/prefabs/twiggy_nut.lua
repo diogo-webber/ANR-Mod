@@ -70,6 +70,7 @@ local function addcone(name, spawn_prefab, bank, build, anim)
         MakeSmallPropagator(inst)
 
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem:SetANRAtlas(1)
 
         MakeHauntableLaunchAndIgnite(inst)
 

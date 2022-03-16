@@ -545,7 +545,7 @@ end
 
 local function CustomOnHauntPig(inst)
     if not inst:HasTag("werepig") and math.random() <= TUNING.HAUNT_CHANCE_OCCASIONAL then
-        local remainingtime = TUNING.TOTAL_DAY_TIME * (1 - TheWorld.state.time)
+        local remainingtime = TUNING.TOTAL_DAY_TIME-- * (1 - TheWorld.state.time)
         local mintime = TUNING.SEG_TIME
         inst.components.werebeast:SetWere(math.max(mintime, remainingtime) + math.random() * TUNING.SEG_TIME)
         inst.components.hauntable.hauntvalue = TUNING.HAUNT_LARGE

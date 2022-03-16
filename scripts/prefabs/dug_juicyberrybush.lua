@@ -42,6 +42,7 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "dug_berrybush"
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetANRAtlas(1)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = TUNING.LARGE_FUEL

@@ -26,8 +26,9 @@ local function fn()
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem:SetANRAtlas(2)
     --inst.components.inventoryitem:SetSinks(true) --Leo: DST floating
-
+    
     inst:AddComponent("repairer")
     inst.components.repairer.repairmaterial = MATERIALS.MOONROCK
     inst.components.repairer.healthrepairvalue = TUNING.REPAIR_MOONROCK_NUGGET_HEALTH

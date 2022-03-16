@@ -8,6 +8,7 @@ local PATCHES =
 		"moisture",
 		"health",
 		"playeractionpicker",
+		"inventoryitem",
 	},
 	
 	PREFABS = {

@@ -85,6 +85,7 @@ local function MakeVeggie(name)
         
         inst:AddComponent("inspectable")
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem:SetANRAtlas(1)
 
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
@@ -137,6 +138,7 @@ local function MakeVeggie(name)
 
         inst:AddComponent("inspectable")
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem:SetANRAtlas(1)
 
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
