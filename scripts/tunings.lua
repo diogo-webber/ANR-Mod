@@ -110,3 +110,9 @@ TUNING.MOONBASE_CHARGE_DURATION = seg_time * 2 - 10.1
 TUNING.MOONBASE_CHARGE_DURATION1 = 18.7
 TUNING.MOONBASE_COMPLETE_WORK = 6
 TUNING.MOONBASE_DAMAGED_WORK = 4
+
+TUNING.PETRIFICATION_CYCLE =
+                            {
+                                MIN_YEARS = .6,
+                                MAX_YEARS = .9,
+                            }

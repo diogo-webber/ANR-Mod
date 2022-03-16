@@ -25,6 +25,7 @@ local PATCHES =
 						"evergreen_burnt",
 						"evergreen_stump",				
 					 },
+		world = "forest",
 	},
 	
 	PLAYERS = {

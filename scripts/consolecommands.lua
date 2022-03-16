@@ -1,6 +1,9 @@
 --Insert some function here
+
+local c_sel = _G.c_sel
+
 function ConsoleCommandPlayer()
-    return (c_sel() ~= nil and c_sel():HasTag("player") and c_sel()) or GetPlayer()
+    return (c_sel() ~= nil and c_sel():HasTag("player") and c_sel()) or _G.GetPlayer()
 end
 
 function ConsoleWorldPosition()
@@ -21,12 +24,12 @@ function ConsoleWorldEntityUnderMouse()
     end
 end
 
-function c_select(inst)
+function _G.c_select(inst)
     if not inst then
         inst = ConsoleWorldEntityUnderMouse()
     end
     print("Selected "..tostring(inst or "<nil>") )
-    SetDebugEntity(inst)
+    _G.SetDebugEntity(inst)
     return inst
 end
 
