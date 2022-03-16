@@ -1380,9 +1380,7 @@ return function(inst)
     end
 
     if inst.prefab == "amulet" then
-        AddHauntableCustomReaction(inst, function(inst)
-            print("ressurect player")
-        end, true, nil, true)
+        if not inst.components.hauntable then inst:AddComponent("hauntable") end
         inst.components.hauntable:SetHauntValue(TUNING.HAUNT_INSTANT_REZ)
     end
 
