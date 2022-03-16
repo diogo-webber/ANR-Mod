@@ -13,6 +13,18 @@ local PATCHES =
 	PREFABS = {
 		--table_example = {"example1", "example2"},
 		maxwellintro = "maxwellintro",
+		evergreens = {
+						"evergreen",
+						"evergreen_normal",
+						"evergreen_tall",
+						"evergreen_short",
+						"evergreen_sparse",
+						"evergreen_sparse_normal",
+						"evergreen_sparse_tall",
+						"evergreen_sparse_short",
+						"evergreen_burnt",
+						"evergreen_stump",				
+					 },
 	},
 	
 	PLAYERS = {

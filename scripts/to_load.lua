@@ -12,6 +12,8 @@ local ToLoad = {
 		"dug_juicyberrybush",
 		"anr_veggies",
 		"ghost_transform_overlay_fx",
+		"petrify_fx",
+		"petrify_announce",
 	},
 	
 	Assets = {

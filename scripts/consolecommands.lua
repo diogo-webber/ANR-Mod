@@ -29,3 +29,39 @@ function c_select(inst)
     SetDebugEntity(inst)
     return inst
 end
+
+_G.we = function()
+    _G.GetPlayer().components.builder:GiveAllRecipes()
+    _G.c_sethunger(1)
+    _G.c_sethealth(1)
+    _G.c_setsanity(1)
+    _G.c_speed(3)
+
+    local wet = _G.GetPlayer().components.moisture
+    if wet then wet:SetMoistureLevel(0) end
+
+    if not _G.GetPlayer().components.health:IsInvincible() then
+        _G.c_godmode()
+    end
+end
+
+ ---------------------------------------------
+
+local GetPlayer = _G.GetPlayer
+local IsHUDPaused = _G.IsPaused
+
+_G.c_save = function ()
+   if not GetPlayer() then print("Paused? " .. tostring(IsHUDPaused()).. " | Player? ".. tostring(GetPlayer())) return end
+
+    GetPlayer().components.autosaver:DoSave()
+end
+
+ ---------------------------------------------
+
+_G.c_reset = function ()
+    if not GetPlayer() then print("Paused? " .. tostring(IsHUDPaused()).. " | Player? ".. tostring(GetPlayer())) return end
+
+	_G.SetPause(true)
+	_G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()}, true)
+	_G.SetPause(false)
+end
