@@ -1,10 +1,11 @@
-modimport("scripts/util.lua")
+modimport("scripts/constants.lua")
 modimport("scripts/strings.lua")
 modimport("scripts/tunings.lua")
-modimport("scripts/constants.lua")
+modimport("scripts/physics.lua")
+modimport("scripts/util.lua")
 modimport("scripts/actions.lua")
-modimport("scripts/patches.lua")
 modimport("scripts/recipes.lua")
+modimport("scripts/patches.lua")
 
 modimport("scripts/consolecommands.lua") --for better testing
 

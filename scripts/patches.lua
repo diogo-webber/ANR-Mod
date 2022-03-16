@@ -1,4 +1,5 @@
 local GenericPlayerFn = require("patches/prefabs/player")
+local AnyFn = require("patches/prefabs/any")
 
 local PATCHES = 
 {
@@ -52,6 +53,10 @@ local PATCHES =
 	WIDGETS = {
 		"statusdisplays",
 	},
+
+	GLOBALCLASS = {
+		entityscript = "EntityScript",
+	}
 }
 
 for i, prefab in ipairs(PATCHES.PLAYERS) do
@@ -75,6 +80,7 @@ for path, data in pairs(PATCHES.PREFABS) do
 end
 
 AddPlayerPostInit(GenericPlayerFn)
+AddPrefabPostInitAny(AnyFn)
 
 for _, file in ipairs(PATCHES.COMPONENTS) do
 	local fn = require("patches/components/"..file)
@@ -98,3 +104,6 @@ for _, name in ipairs(PATCHES.WIDGETS) do
 	AddClassPostConstruct("widgets/"..name, require("patches/widgets/"..name))
 end
 
+for file, name in pairs(PATCHES.GLOBALCLASS) do
+	AddGlobalClassPostConstruct(file, name, require("patches/"..file))
+end

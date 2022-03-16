@@ -21,7 +21,7 @@ return function(inst)
     end
 
 	local _OnSave = inst.OnSave
-	inst.OnSave = function(inst, data, ...)
+    inst.OnSave = function(inst, data, ...)
 		if data then
             data.isghost = inst:HasTag("playerghost")
 		end

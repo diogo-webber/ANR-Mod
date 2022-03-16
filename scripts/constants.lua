@@ -1,3 +1,5 @@
+_G.DEGREES = PI/180
+
 _G.RATE_SCALE =
 {
     NEUTRAL = 0,
@@ -43,4 +45,3 @@ _G.FOODTYPE =
     GOODIES = "GOODIES",
     MONSTER = "MONSTER", -- Added in for woby, uses the secondary foodype originally added for the berries
 }
-

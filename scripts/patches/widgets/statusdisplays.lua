@@ -125,7 +125,7 @@ return function(self)
             self.rezbuttontask:Cancel()
             self.rezbuttontask = nil
         end
-        self:EnableResurrect(self.owner.components.attuner ~= nil and self.owner.components.attuner:HasAttunement("remoteresurrector"))
+        self:EnableResurrect(self.owner.components.attuner and self.owner.components.attuner:HasAttunement("remoteresurrector"))
     end
 
     function self:EnableResurrect(enable)

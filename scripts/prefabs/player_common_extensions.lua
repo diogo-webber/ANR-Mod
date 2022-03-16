@@ -50,18 +50,6 @@ local function GhostActionFilter(inst, action)
     return action.ghost_valid
 end
 
-local function ConfigurePlayerActions(inst)
-    if inst.components.playeractionpicker ~= nil then
-        inst.components.playeractionpicker:PopActionFilter(GhostActionFilter)
-    end
-end
-
-local function ConfigureGhostActions(inst)
-    if inst.components.playeractionpicker ~= nil then
-        inst.components.playeractionpicker:PushActionFilter(GhostActionFilter, 99)
-    end
-end
-
 local function RemoveDeadPlayer(inst, spawnskeleton)
     if spawnskeleton and inst.skeleton_prefab ~= nil then
         local x, y, z = inst.Transform:GetWorldPosition()
@@ -195,7 +183,6 @@ local function CommonActualRez(inst)
     inst.components.talker.offset = nil
 
     ConfigurePlayerLocomotor(inst)
-    ConfigurePlayerActions(inst)
 
     inst.rezsource = nil
     inst.remoterezsource = nil
@@ -540,7 +527,6 @@ local function OnMakePlayerGhost(inst, data)
     GetWorld().components.colourcubemanager:SetOverrideColourCube(softresolvefilepath("images/colour_cubes/ghost_cc.tex"))
 
     ConfigureGhostLocomotor(inst)
-    ConfigureGhostActions(inst)
 
     inst:PushEvent("ms_becameghost")
 
@@ -581,8 +567,6 @@ return
     ShouldKnockout              = ShouldKnockout,
     ConfigurePlayerLocomotor    = ConfigurePlayerLocomotor,
     ConfigureGhostLocomotor     = ConfigureGhostLocomotor,
-    ConfigurePlayerActions      = ConfigurePlayerActions,
-    ConfigureGhostActions       = ConfigureGhostActions,
     OnPlayerDeath               = OnPlayerDeath,
     OnPlayerDied                = OnPlayerDied,
     OnMakePlayerGhost           = OnMakePlayerGhost,

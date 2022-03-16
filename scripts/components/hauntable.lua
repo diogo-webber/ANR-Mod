@@ -28,13 +28,11 @@ function Hauntable:SetOnHauntFn(fn)
     -- This function, whatever it is, should return true for successful haunts (to trigger haunter effects) and nil or false for unsuccessful haunts
     -- A successful haunt should be determined on a per-entity basis (i.e. rates/conditions might vary for different ents)
     self.onhaunt = fn
-    self.inst:AddTag("haunted")
 end
 
 -- Function that fires when something is done being haunted (i.e. its haunt expires)
 function Hauntable:SetOnUnHauntFn(fn)
     self.onunhaunt = fn
-    self.inst:RemoveTag("haunted")
 end
 
 function Hauntable:SetHauntValue(val)
@@ -45,6 +43,7 @@ end
 
 function Hauntable:Panic(panictime)
     self.haunted = true
+    self.inst:AddTag("haunted")
     self.panic = true
     self.panictimer = panictime or TUNING.HAUNT_PANIC_TIME_SMALL
     self.cooldowntimer = self.panictimer
@@ -92,6 +91,7 @@ function Hauntable:DoHaunt(doer)
             end
         else
 			if self.inst:IsValid() then
+                self.inst:AddTag("haunted")
 				self.haunted = true
 				self.cooldowntimer = self.cooldown or TUNING.HAUNT_COOLDOWN_SMALL
 				self:StartFX(true)
@@ -116,6 +116,7 @@ function Hauntable:OnUpdate(dt)
     if self.cooldowntimer <= 0 then
         self.cooldowntimer = 0
         self.haunted = false
+        self.inst:RemoveTag("haunted")
         if self.onunhaunt then
             self.onunhaunt(self.inst)
         end
@@ -147,7 +148,7 @@ function Hauntable:OnRemoveFromEntity()
 end
 
 function Hauntable:CollectSceneActions(doer, actions)
-	if not (self.inst:HasTag("haunted") or self.inst:HasTag("catchable")) and doer:HasTag("playerghost") then
+	if not (self.haunted or self.inst:HasTag("catchable")) and doer:HasTag("playerghost") then
 		table.insert(actions, ACTIONS.HAUNT)
 	end
 end

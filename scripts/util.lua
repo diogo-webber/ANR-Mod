@@ -4,16 +4,21 @@ env.AddPlayerPostInit = function(fn)
     end)
 end
 -------------------------------------------------------------------------------------------
-function _G.AnimState:SetHaunted(ishaunted, ...)
+function AnimState:SetHaunted(ishaunted, ...)
     print("IsHaunted", ishaunted)
 	return ishaunted		
 end
+
 -------------------------------------------------------------------------------------------
-function _G.EntityScript:GetBasicDisplayName()
-    return (self.displaynamefn ~= nil and self:displaynamefn())
-        or (self.nameoverride ~= nil and STRINGS.NAMES[string.upper(self.nameoverride)])
-        or self.name
-end
+local _Action = Action
+Action = Class(function(self, data, ...) 
+    _Action(self, data, ...)
+    self.mindistance = data.mindistance or nil
+    self.ghost_exclusive = data.ghost_exclusive or false
+    self.ghost_valid = self.ghost_exclusive or data.ghost_valid or false -- If it's ghost-exclusive, then it must be ghost-valid
+end)
+
+
 -------------------------------------------------------------------------------------------
 --"Oooh" string stuff
 local Oooh_endings = { "h", "oh", "ohh" }
@@ -114,7 +119,7 @@ function _G.MakeHauntableLaunch(inst, chance, speed, cooldown, haunt_value)
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
         chance = chance or TUNING.HAUNT_CHANCE_ALWAYS
         if math.random() <= chance then
-            Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+            _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
             inst.components.hauntable.hauntvalue = haunt_value or TUNING.HAUNT_TINY
             return true
         end
@@ -128,7 +133,7 @@ function _G.MakeHauntableLaunchAndSmash(inst, launch_chance, smash_chance, speed
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
         launch_chance = launch_chance or TUNING.HAUNT_CHANCE_ALWAYS
         if math.random() <= launch_chance then
-            Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+            _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
             inst.components.hauntable.hauntvalue = launch_haunt_value or TUNING.HAUNT_TINY
             --#HAUNTFIX
             --smash_chance = smash_chance or TUNING.HAUNT_CHANCE_OCCASIONAL
@@ -243,7 +248,7 @@ function _G.MakeHauntableLaunchAndIgnite(inst, launchchance, ignitechance, speed
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
         launchchance = launchchance or TUNING.HAUNT_CHANCE_ALWAYS
         if math.random() <= launchchance then
-            Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+            _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
             inst.components.hauntable.hauntvalue = launch_haunt_value or TUNING.HAUNT_TINY
             --#HAUNTFIX
             --ignitechance = ignitechance or TUNING.HAUNT_CHANCE_VERYRARE
@@ -326,7 +331,7 @@ function _G.MakeHauntableLaunchOrChangePrefab(inst, launchchance, prefabchance, 
                 DoChangePrefab(inst, newprefab, haunter, nofx)
                 inst.components.hauntable.hauntvalue = prefab_haunt_value or TUNING.HAUNT_SMALL
             else
-                Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+                _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
                 inst.components.hauntable.hauntvalue = launch_haunt_value or TUNING.HAUNT_TINY
             end
             return true
@@ -357,7 +362,7 @@ function _G.MakeHauntableLaunchAndPerish(inst, launchchance, perishchance, speed
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
         launchchance = launchchance or TUNING.HAUNT_CHANCE_ALWAYS
         if math.random() <= launchchance then
-            Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+            _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
             inst.components.hauntable.hauntvalue = launch_haunt_value or TUNING.HAUNT_TINY
             inst.components.hauntable.cooldown = cooldown or TUNING.HAUNT_COOLDOWN_SMALL
             --#HAUNTFIX
@@ -525,7 +530,7 @@ function _G.MakeHauntableLaunchAndDropFirstItem(inst, launchchance, dropchance, 
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
         launchchance = launchchance or TUNING.HAUNT_CHANCE_ALWAYS
         if math.random() <= launchchance then
-            Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
+            _G.Launch(inst, haunter, speed or TUNING.LAUNCH_SPEED_SMALL)
             inst.components.hauntable.hauntvalue = launch_haunt_value or TUNING.HAUNT_TINY
             inst.components.hauntable.cooldown = cooldown or TUNING.HAUNT_COOLDOWN_SMALL
             --#HAUNTFIX
@@ -557,7 +562,7 @@ function _G.MakeHauntableLaunchAndDropFirstItem(inst, launchchance, dropchance, 
     end)
 end
 
-function AddHauntableCustomReaction(inst, fn, secondrxn, ignoreinitialresult, ignoresecondaryresult)
+function _G.AddHauntableCustomReaction(inst, fn, secondrxn, ignoreinitialresult, ignoresecondaryresult)
     if not inst.components.hauntable then inst:AddComponent("hauntable") end
     local onhaunt = inst.components.hauntable.onhaunt
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
@@ -583,7 +588,7 @@ function AddHauntableCustomReaction(inst, fn, secondrxn, ignoreinitialresult, ig
     end)
 end
 
-function AddHauntableDropItemOrWork(inst)
+function _G.AddHauntableDropItemOrWork(inst)
     if not inst.components.hauntable then inst:AddComponent("hauntable") end
     inst.components.hauntable.cooldown = TUNING.HAUNT_COOLDOWN_SMALL
     inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
