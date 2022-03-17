@@ -78,6 +78,7 @@ local PATCHES =
 		world = "forest",
 		--grass = "grass",
 		flower = "flower",
+		resurrectionstone = "resurrectionstone",
 	},
 	
 	PLAYERS = {

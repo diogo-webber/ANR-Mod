@@ -46,6 +46,8 @@ local ToLoad = {
 		Asset("IMAGE", "minimap/minimap_atlas_anr.tex" ),
 		Asset("ATLAS", "minimap/minimap_data_anr.xml" ),
 
+		Asset("ANIM", "anim/resurrection_stone_fx.zip"),
+
 		Asset("ANIM", "anim/player_revive_ghosthat.zip"),
 		Asset("ANIM", "anim/player_ghost_withhat.zip"),
         Asset("ANIM", "anim/player_revive_to_character.zip"),

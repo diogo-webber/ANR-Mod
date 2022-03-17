@@ -235,6 +235,7 @@ local function DoActualRez(inst, source, item)
 
     inst.Physics:Teleport(x, y, z)
 
+    inst.HUD:Show()
     inst.HUD.controls.status:SetGhostMode(false)
     GetWorld().components.colourcubemanager:SetOverrideColourCube(nil)
 
