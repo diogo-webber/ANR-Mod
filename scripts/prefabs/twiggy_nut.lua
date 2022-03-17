@@ -1,11 +1,30 @@
 require "prefabutil"
 
+local function growtree(inst)
+	print ("GROWTREE")
+    inst.growtask = nil
+    inst.growtime = nil
+	local tree = SpawnPrefab("evergreen_short") 
+    if tree then 
+		tree.Transform:SetPosition(inst.Transform:GetWorldPosition() ) 
+        tree:growfromseed()
+        inst:Remove()
+	end
+end
+
 local function plant(inst, growtime)
-    local sapling = SpawnPrefab(inst._spawn_prefab or "pinecone_sapling")
+    inst:RemoveComponent("inventoryitem")
+    RemovePhysicsColliders(inst)
+    inst.AnimState:PlayAnimation("idle_planted")
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
+    inst.growtime = GetTime() + growtime
+    inst.growtask = inst:DoTaskInTime(growtime, growtree)
+
+    --[[local sapling = SpawnPrefab(inst._spawn_prefab or "pinecone_sapling")
     sapling:StartGrowing()
     sapling.Transform:SetPosition(inst.Transform:GetWorldPosition())
     sapling.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
-    inst:Remove()
+    inst:Remove()]]
 end
 
 local function ondeploy(inst, pt, deployer)
@@ -32,7 +51,7 @@ local function addcone(name, spawn_prefab, bank, build, anim)
 
     local prefabs =
     {
-        spawn_prefab,
+        
     }
 
     local function fn()
@@ -54,7 +73,7 @@ local function addcone(name, spawn_prefab, bank, build, anim)
 
         --MakeInventoryFloatable(inst, "small", 0.05, 0.9)
 
-        inst._spawn_prefab = spawn_prefab
+        --inst._spawn_prefab = spawn_prefab
 
         inst:AddComponent("tradable")
 
@@ -70,7 +89,7 @@ local function addcone(name, spawn_prefab, bank, build, anim)
         MakeSmallPropagator(inst)
 
         inst:AddComponent("inventoryitem")
-        inst.components.inventoryitem:SetANRAtlas(1)
+        inst.components.inventoryitem:SetANRAtlas(2)
 
         MakeHauntableLaunchAndIgnite(inst)
 

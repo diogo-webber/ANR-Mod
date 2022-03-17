@@ -14,6 +14,8 @@ local ToLoad = {
 		"ghost_transform_overlay_fx",
 		"petrify_fx",
 		"petrify_announce",
+		"flower_withered",
+		"rose",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",

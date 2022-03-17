@@ -116,3 +116,6 @@ TUNING.PETRIFICATION_CYCLE =
                                 MIN_YEARS = .6,
                                 MAX_YEARS = .9,
                             }
+
+TUNING.DAYLIGHT_SEARCH_RANGE = 30
+TUNING.ROSE_DAMAGE = 1
