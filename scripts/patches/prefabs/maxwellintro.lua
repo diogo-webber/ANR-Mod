@@ -1,10 +1,5 @@
 return function(inst)
     inst:DoTaskInTime(0, function()
-		TheCamera:SetTarget(GetPlayer())
-		TheCamera:SetDefault()
-		TheCamera:Snap()
-        GetPlayer().sg:GoToState("idle")
-        GetWorld():PushEvent("ms_newplayercharacterspawned")
         inst:Remove()
     end)
 end

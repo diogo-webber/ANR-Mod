@@ -65,6 +65,10 @@ local ForestPetrification = Class(function(self, inst)
     self._x0 = nil
     self._z0 = nil
     self._retries = nil
+
+    self.inst:DoTaskInTime(0, function()
+        self:OnPostInit()
+    end)
     
     self.inst:ListenForEvent("ms_registerpetrifiable", function(inst, target) self:OnRegisterPetrifiable(inst, target) end)
     self.inst:ListenForEvent("ms_unregisterpetrifiable", function(inst, target) self:OnUnregisterPetrifiable(inst, target) end)

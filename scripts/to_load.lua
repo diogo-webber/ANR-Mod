@@ -14,6 +14,9 @@ local ToLoad = {
 		"ghost_transform_overlay_fx",
 		"petrify_fx",
 		"petrify_announce",
+
+		"puppet_cutscene",
+		"explode_shadow_skin",
 	},
 	
 	Assets = {
@@ -38,6 +41,8 @@ local ToLoad = {
 		Asset("ANIM", "anim/player_revive_to_werebeaver.zip"),
 		Asset("ANIM", "anim/player_revive_to_weremoose.zip"),
 		Asset("ANIM", "anim/player_revive_to_weregoose.zip"),
+		Asset("ANIM", "anim/player_skin_change.zip"),
+		Asset("ANIM", "anim/player_construct.zip"),
 		
 		Asset("ANIM", "anim/ghost_wathgrithr_build.zip"),
 		Asset("ANIM", "anim/ghost_waxwell_build.zip"),

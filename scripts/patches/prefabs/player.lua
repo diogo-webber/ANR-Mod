@@ -37,6 +37,10 @@ return function(inst)
                 inst:DoTaskInTime(FRAMES, function()
                     inst.deathcause = "file_load"
                     ex_fns.OnMakePlayerGhost(inst)
+                    
+                    inst:DoTaskInTime(FRAMES, function()
+                        inst.SoundEmitter:KillSound("talk")
+                    end)
 
                     inst.HUD.controls.inv:Hide()
                     inst.HUD.controls.crafttabs:Hide()                

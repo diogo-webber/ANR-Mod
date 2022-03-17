@@ -165,6 +165,26 @@ local states =
         },
     },
 
+    State{
+        name = "preconstruct_transform",
+        tags = { "busy" },
+        onenter = function(inst)
+            PlayAnimation(inst, "pre_fx")
+            PushAnimation(inst, "fx")
+            inst.components.colourtweener:StartTween({ 0, 0, 0, 1 }, 1.5, function(inst)
+                inst.AnimState:SetBank("portal_dst")
+                inst.AnimState:SetBuild("portal_stone")
+            end, true)
+        end,
+
+        timeline =
+        {
+            TimeEvent(45 * FRAMES, function(inst) inst.AnimState:Pause() end),
+            TimeEvent(45 * FRAMES, function(inst) inst.AnimState:Resume() inst.components.colourtweener:StartTween({ 1, 1, 1, 1 }, 0.5) end),
+            TimeEvent(60 * FRAMES, function(inst) GetWorld():PushEvent("ms_newplayercharacterspawned") end),
+        },
+    },
+
     --For construction portals
     State{
         name = "placeconstruction",

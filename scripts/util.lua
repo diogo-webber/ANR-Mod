@@ -5,8 +5,21 @@ env.AddPlayerPostInit = function(fn)
 end
 -------------------------------------------------------------------------------------------
 function AnimState:SetHaunted(ishaunted, ...)
-    print("IsHaunted", ishaunted)
 	return ishaunted		
+end
+
+function AnimState:HideSymbol(symbol, ...)
+    if not symbol then
+        return
+    end
+    self:OverrideSymbol(symbol, "nil", "nil")
+end
+
+function AnimState:ShowSymbol(symbol, ...)
+    if not symbol then
+        return
+    end
+    self:ClearOverrideSymbol(symbol)
 end
 
 -------------------------------------------------------------------------------------------
