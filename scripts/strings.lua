@@ -45,6 +45,19 @@ STRINGS.ANR_CUTSCENE = {
 STRINGS.ACTIONS.HAUNT = "Haunt"
 -------------------------------------UI
 STRINGS.UI.HUD.ACTIVATE_RESURRECTION = "Activate Meat Effigy"
+
+STRINGS.UI.WORLDRESETDIALOG =
+{
+    TITLE = "Day %d: You are dead",
+    TITLE_LATEJOIN = "Day %d: Everyone else is dead. Save them!",
+    RESET_MSG = "World will reset in: %d",
+    SURVIVED_MSG = "Survived %d Days",
+    SURVIVED_MSG_1_DAY = "Survived %d Day",
+    RESET_BUTTON = "Reset Now",
+    BUTTONPROMPT1 = "Hold ",
+    BUTTONPROMPT2 = "to Reset Now"
+}
+
 -------------------------------------
 STRINGS.NAMES.ROCK_MOON = "Boulder"
 STRINGS.NAMES.ROCK_MOON_SHELL = "Suspicious Boulder"

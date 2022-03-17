@@ -117,6 +117,7 @@ local PATCHES =
 
 	WIDGETS = {
 		"statusdisplays",
+		"controls",
 	},
 
 	GLOBALCLASS = {

@@ -393,6 +393,8 @@ local function OnRespawnFromGhost(inst, data) -- from ListenForEvent "respawnfro
         return
     end
 
+    GetWorld().components.worldreset:Enable(false)
+
 	inst:AddTag("reviving")
 
     inst.deathclientobj = nil
@@ -482,6 +484,8 @@ local function OnMakePlayerGhost(inst, data)
     if inst:HasTag("playerghost") then
         return
     end
+
+    GetWorld().components.worldreset:Enable(true)
 
     local x, y, z = inst.Transform:GetWorldPosition()
 

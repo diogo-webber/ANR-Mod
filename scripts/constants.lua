@@ -1,4 +1,10 @@
+local function RGB(r, g, b)
+    return { r / 255, g / 255, b / 255, 1 }
+end
+
 _G.DEGREES = PI/180
+
+_G.DEFAULT_PLAYER_COLOUR = RGB(153, 153, 153) -- GREY
 
 _G.RATE_SCALE =
 {
@@ -10,7 +16,6 @@ _G.RATE_SCALE =
     DECREASE_MED = 5,
     DECREASE_LOW = 6,
 }
-
 
 _G.MATERIALS =
 {

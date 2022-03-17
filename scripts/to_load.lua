@@ -24,6 +24,15 @@ local ToLoad = {
 	Assets = {
 		Asset("IMAGE", "images/colour_cubes/ghost_cc.tex"),
 
+		Asset("IMAGE", "images/fepanel_fills.tex"),
+		Asset("ATLAS", "images/fepanel_fills.xml"),
+
+		Asset("IMAGE", "images/fepanels_anr.tex"),
+		Asset("ATLAS", "images/fepanels_anr.xml"),
+
+		Asset("IMAGE", "images/avatars.tex"),
+		Asset("ATLAS", "images/avatars.xml"),
+
 		Asset("IMAGE", "images/hud_anr.tex" ),
 		Asset("ATLAS", "images/hud_anr.xml" ),
 		Asset("IMAGE", "images/hud2_anr.tex" ),
