@@ -495,7 +495,7 @@ local function OnMakePlayerGhost(inst, data)
     else
         inst.AnimState:SetBuild("ghost_build")
     end 
-    --inst.components.bloomer:PushBloom("playerghostbloom", softresolvefilepath("shaders/anim_bloom_ghost.ksh"), 100)
+    inst.components.bloomer:PushBloom("playerghostbloom", softresolvefilepath("shaders/anim.ksh"), 100)
     inst.AnimState:SetLightOverride(TUNING.GHOST_LIGHT_OVERRIDE)
 
     inst:SetStateGraph("SGwilsonghost")

@@ -44,6 +44,7 @@ local function OnRezPlayer(inst)
 end
 local function CutScene(inst)
     inst:DoTaskInTime(0, function()
+        inst.playercutscene = true
         local ismaxwell = GetPlayer().prefab == "waxwell"
         local iswilson = GetPlayer().prefab == "wilson"
 

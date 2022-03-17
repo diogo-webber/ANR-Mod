@@ -62,3 +62,6 @@ STRINGS.NAMES.GRASSGEKKOS = "Grass Gekko Morphing"
 
 STRINGS.NAMES.DUG_BERRYBUSH_JUICY = "Juicy Berry Bush"
 STRINGS.NAMES.BERRYBUSH_JUICY = "Juicy Berry Bush"
+-------------------------------------
+STRINGS.PIG_TALK_PANICHAUNT = { "SPOOKY!", "AAAAH!!", "A GHOST! A GHOST!" }
+STRINGS.RABBIT_PANICHAUNT = { "SCARED!", "AAAH!!", "OHH!", "GHOST!" }

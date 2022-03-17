@@ -12,7 +12,7 @@ function AnimState:HideSymbol(symbol, ...)
     if not symbol then
         return
     end
-    self:OverrideSymbol(symbol, "nil", "nil")
+    self:OverrideSymbol(symbol, "wilson", "nil")
 end
 
 function AnimState:ShowSymbol(symbol, ...)

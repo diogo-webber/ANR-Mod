@@ -3,6 +3,54 @@ local AnyFn = require("patches/prefabs/any")
 
 local PATCHES = 
 {
+	BRAINS = {
+		any = {
+			"beefalobrain",
+			"babybeefalobrain",
+			"beardbunnymanbrain",
+			"beebrain",
+			"butterflybrain",
+			"catcoonbrain",
+			"chesterbrain",
+			"frogbrain",
+			"houndbrain",
+			"killerbeebrain",
+			"mandrakebrain",
+			"monkeybrain",
+			"mosquitobrain",
+			"nightmaremonkeybrain",
+			"penguinbrain",
+			"rabbitbrain",
+			"slurperbrain",
+			"slurtlebrain",
+			"slurtlesnailbrain",
+			"smallbirdbrain",
+			"spatbrain",
+			"spiderbrain",
+			"spiderqueenbrain",
+			"tallbirdbrain",
+			"werepigbrain",
+			"wormbrain",
+			"batbrain",
+			"birchnutdrakebrain",
+			"bishopbrain",
+			"knightbrain",
+			"koalefantbrain",
+			"krampusbrain",
+			"mermbrain",
+			"minotaurbrain",
+			"molebrain",
+			"perdbrain",
+			"pigguardbrain",
+			"rockybrain",
+			"rookbrain",
+			"walrusbrain",
+			"werepigbrain",
+		},
+		pigman = "pigbrain",
+		bunnyman = "bunnymanbrain",
+	},
+	
 	COMPONENTS = {
 		"freezable",
 		"moisture",
@@ -82,7 +130,23 @@ end
 local function patch(prefab, fn)
 	AddPrefabPostInit(prefab, fn)
 end
+
+local function patchbrain(prefab, fn)
+	AddBrainPostInit(prefab, fn)
+end
+				
+for path, data in pairs(PATCHES.BRAINS) do
+	local fn = require("patches/brains/"..path)
 	
+	if type(data) == "string" then
+		patchbrain(data, function(inst) fn(inst, data) end)
+	else
+		for _, pref in ipairs(data) do
+			patchbrain(pref, function(inst) fn(inst, pref) end)
+		end
+	end
+end
+
 for path, data in pairs(PATCHES.PREFABS) do
 	local fn = require("patches/prefabs/"..path)
 	
