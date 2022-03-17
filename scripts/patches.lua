@@ -78,6 +78,8 @@ local PATCHES =
 		world = "forest",
 		--grass = "grass",
 		flower = "flower",
+		cave_entrance = "cave_entrance", -- Patch non-finished
+		cave_exit = "cave_exit",
 	},
 	
 	PLAYERS = {

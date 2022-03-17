@@ -70,6 +70,8 @@ local ToLoad = {
 		Asset("ANIM", "anim/ghost_wx78_build.zip"),
 
 		Asset("SHADER", "shaders/anim_bloom_ghost.ksh"),
+	
+		Asset("ANIM", "anim/cave_exit.zip")
 	},
 }
 

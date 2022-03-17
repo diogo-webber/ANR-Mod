@@ -78,3 +78,5 @@ STRINGS.NAMES.BERRYBUSH_JUICY = "Juicy Berry Bush"
 -------------------------------------
 STRINGS.PIG_TALK_PANICHAUNT = { "SPOOKY!", "AAAAH!!", "A GHOST! A GHOST!" }
 STRINGS.RABBIT_PANICHAUNT = { "SCARED!", "AAAH!!", "OHH!", "GHOST!" }
+
+STRINGS.NAMES.CAVE_EXIT = "Stairs"
