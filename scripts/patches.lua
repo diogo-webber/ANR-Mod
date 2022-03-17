@@ -28,6 +28,7 @@ local PATCHES =
 						"evergreen_stump",				
 					 },
 		world = "forest",
+		--grass = "grass",
 	},
 	
 	PLAYERS = {
