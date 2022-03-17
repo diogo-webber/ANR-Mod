@@ -41,6 +41,21 @@ local function ConfigureGhostLocomotor(inst)
     -- inst.components.locomotor:SetAllowPlatformHopping(false) --RoT
 end
 
+local function ValidateHaunt(target)
+    return target and target.components and target.components.hauntable and not target.components.hauntable.haunted 
+end
+
+local HAUNT_TARGET_EXCLUDE_TAGS = { "haunted", "catchable",  "FX", "NOCLICK", "DECOR", "INLIMBO"  }
+
+local function GhostActionButton(inst)
+    local target = FindEntity(inst, 6, ValidateHaunt, nil, HAUNT_TARGET_EXCLUDE_TAGS)
+
+	if not inst.sg:HasStateTag("busy") and target then
+        if CanEntitySeeTarget(inst, target) then
+            return BufferedAction(inst, target, ACTIONS.HAUNT)
+        end
+	end
+end
 --------------------------------------------------------------------------
 -- Death and Ghost Functions
 --------------------------------------------------------------------------
@@ -183,6 +198,7 @@ local function CommonActualRez(inst)
     inst.components.talker.offset = nil
 
     ConfigurePlayerLocomotor(inst)
+	inst.components.playercontroller.actionbuttonoverride = nil
 
     inst.rezsource = nil
     inst.remoterezsource = nil
@@ -527,6 +543,7 @@ local function OnMakePlayerGhost(inst, data)
     GetWorld().components.colourcubemanager:SetOverrideColourCube(softresolvefilepath("images/colour_cubes/ghost_cc.tex"))
 
     ConfigureGhostLocomotor(inst)
+	inst.components.playercontroller.actionbuttonoverride = GhostActionButton
 
     inst:PushEvent("ms_becameghost")
 

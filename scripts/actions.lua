@@ -8,6 +8,10 @@ local function DefaultRangeCheck(doer, target)
     return dst <= 16
 end
 
+ACTIONS.LOOKAT.ghost_valid = true
+ACTIONS.WALKTO.ghost_valid = true
+ACTIONS.JUMPIN.ghost_valid = true
+
 local HAUNT = Action({ rmb=false, mindistance=2, ghost_valid=true, ghost_exclusive=true, canforce=true, rangecheckfn=DefaultRangeCheck })
 HAUNT.str = STRINGS.ACTIONS.HAUNT
 HAUNT.id = "HAUNT"
@@ -17,7 +21,7 @@ HAUNT.fn = function(act)
         not act.target:IsInLimbo() and
         act.target.components.hauntable ~= nil and
         not (act.target.components.inventoryitem ~= nil and act.target.components.inventoryitem:IsHeld()) and
-        not (act.target:HasTag("haunted") or act.target:HasTag("catchable")) then
+        not (act.target.components.hauntable.haunted or act.target:HasTag("catchable")) then
         act.doer:PushEvent("haunt", { target = act.target })
         act.target.components.hauntable:DoHaunt(act.doer)
         return true
