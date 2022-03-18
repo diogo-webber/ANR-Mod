@@ -64,7 +64,6 @@ local PATCHES =
 	},
 	
 	PREFABS = {
-		--table_example = {"example1", "example2"},
 		maxwellintro = "maxwellintro",
 		evergreens = {
 						"evergreen",

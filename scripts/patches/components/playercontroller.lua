@@ -1,3 +1,4 @@
+
 local function notriding(inst)
 	return not inst.components.rider or not inst.components.rider:IsRiding()
 end
@@ -111,12 +112,12 @@ return function(self)
         end
         
         if self:IsEnabled() and not (self.inst.sg:HasStateTag("working") or self.inst.sg:HasStateTag("doing")) then
-            local tool = self.inst.components.inventory:GetEquippedItem(_G.EQUIPSLOTS.HANDS)
+            local tool = self.inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
             local action = self:GetToolAction(tool)
             if action then
                 return action
             else
-                tool = self.inst.components.inventory:GetEquippedItem(_G.EQUIPSLOTS.HEAD)
+                tool = self.inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
                 return self:GetToolAction(tool)
             end
         end	

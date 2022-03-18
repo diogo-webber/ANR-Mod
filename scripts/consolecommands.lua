@@ -33,7 +33,7 @@ function _G.c_select(inst)
     return inst
 end
 
-_G.we = function()
+function _G.we()
     _G.GetPlayer().components.builder:GiveAllRecipes()
     _G.c_sethunger(1)
     _G.c_sethealth(1)
@@ -52,16 +52,23 @@ end
 
 local GetPlayer = _G.GetPlayer
 
-_G.c_save = function ()
+
+function _G.c_save()
     GetPlayer().components.autosaver:DoSave()
 end
 
- ---------------------------------------------
+---------------------------------------------
 
-_G.c_reset = function ()
+function _G.c_reset()
     GetPlayer().HUD:Hide()
     _G.TheFrontEnd:HideConsoleLog()
-	_G.TheFrontEnd:Fade(false, 1, function()					
-        _G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()}, true)
+
+    _G.TheFrontEnd:Fade(false, 1, function()			
+        _G.StartNextInstance(
+            {
+                reset_action=_G.RESET_ACTION.LOAD_SLOT,
+                save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()
+            },
+            true)
     end)
 end

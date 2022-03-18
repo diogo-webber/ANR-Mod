@@ -24,7 +24,7 @@ local function SmolderUpdate(inst, self)
     end
 
     -- smolder about twice as fast if there's lots of heat nearby
-    local heatmod = math.clamp(_G.Remap(nearbyheat, 20, 90, 1, 2.2), 1, 2.2)
+    local heatmod = math.clamp(Remap(nearbyheat, 20, 90, 1, 2.2), 1, 2.2)
 
     self.smoldertimeremaining = self.smoldertimeremaining - SMOLDER_TICK_TIME * heatmod
     if self.smoldertimeremaining <= 0 then
