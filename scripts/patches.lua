@@ -56,6 +56,7 @@ local PATCHES =
 		"moisture",
 		"health",
 		"playeractionpicker",
+		"playercontroller",
 		"inventoryitem",
 		"combat",
 	},
@@ -79,6 +80,7 @@ local PATCHES =
 		--grass = "grass",
 		flower = "flower",
 		resurrectionstone = "resurrectionstone",
+		resurrectionstatue = "resurrectionstatue",
 	},
 	
 	PLAYERS = {
@@ -118,6 +120,7 @@ local PATCHES =
 
 	WIDGETS = {
 		"statusdisplays",
+		"healthbadge",
 		"controls",
 	},
 

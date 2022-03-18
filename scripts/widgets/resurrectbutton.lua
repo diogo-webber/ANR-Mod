@@ -8,7 +8,7 @@ local ResurrectButton = Class(Widget, function(self, owner)
     self.owner = owner
     self.hud_focus = owner.HUD.focus
 
-    self.button = self:AddChild(ImageButton("images/hud.xml", "effigy_button.tex", "effigy_button_mouseover.tex", "effigy_button.tex"))
+    self.button = self:AddChild(ImageButton("images/hud_anr.xml", "effigy_button.tex", "effigy_button_mouseover.tex", "effigy_button.tex"))
     self.button:SetOnClick(function() self:DoResurrect() end)
 
     self.text = self:AddChild(Text(TALKINGFONT, 28))
@@ -49,7 +49,7 @@ end
 
 function ResurrectButton:DoResurrect()
     if self.owner.components.playercontroller ~= nil then
-        --self.owner.components.playercontroller:DoResurrectButton() --TODO
+        self.owner.components.playercontroller:DoResurrectButton()
     end
 end
 

@@ -16,6 +16,7 @@ local ToLoad = {
 		"petrify_announce",
 		"flower_withered",
 		"rose",
+		"anr_fx",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",
@@ -47,6 +48,7 @@ local ToLoad = {
 		Asset("ATLAS", "minimap/minimap_data_anr.xml" ),
 
 		Asset("ANIM", "anim/resurrection_stone_fx.zip"),
+		Asset("ANIM", "anim/status_health.zip"),
 
 		Asset("ANIM", "anim/player_revive_ghosthat.zip"),
 		Asset("ANIM", "anim/player_ghost_withhat.zip"),

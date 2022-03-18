@@ -1,12 +1,13 @@
-local function PlayPetrifySound(proxy)
+local function fn()
     local inst = CreateEntity()
 
     inst.entity:AddTransform()
     inst.entity:AddSoundEmitter()
+    inst:AddTag("FX")
 
-    --[[if TheFocalPoint ~= nil then
-        local x, y, z = TheFocalPoint.Transform:GetWorldPosition()
-        local x1, y1, z1 = proxy.Transform:GetWorldPosition()
+    inst:DoTaskInTime(0, function()
+        local x, y, z = GetPlayer().Transform:GetWorldPosition()
+        local x1, y1, z1 = inst .Transform:GetWorldPosition()
         local dx, dz = x1 - x, z1 - z
         local dist = math.sqrt(dx * dx + dz * dz)
         local maxdist = 20
@@ -18,26 +19,14 @@ local function PlayPetrifySound(proxy)
             z1 = z + dz
         end
         inst.Transform:SetPosition(x1, 0, z1)
-    else
-        inst.Transform:SetFromProxy(proxy.GUID)
-    end]]
 
-    inst.SoundEmitter:PlaySound("dontstarve/common/together/petrified/post_distant")
-    inst:Remove()
-end
-
-local function fn()
-    local inst = CreateEntity()
-
-    inst.entity:AddTransform()
-
-    inst:AddTag("FX")
-
-    inst:DoTaskInTime(0, PlayPetrifySound)
-
+        inst.SoundEmitter:PlaySound("dontstarve/common/together/petrified/post_distant")
+    end)
+    
     inst.entity:SetCanSleep(false)
     inst.persists = false
-    inst:DoTaskInTime(1, inst.Remove)
+
+    inst:DoTaskInTime(5, inst.Remove)
 
     return inst
 end

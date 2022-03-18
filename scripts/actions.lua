@@ -29,3 +29,31 @@ HAUNT.fn = function(act)
 end
 AddAction(HAUNT)
 AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.HAUNT, "haunt_pre"))
+
+local ATTUNE = Action()
+ATTUNE.str = STRINGS.ACTIONS.ATTUNE
+ATTUNE.id = "ATTUNE"
+ATTUNE.fn = function(act)
+    if act.doer ~= nil and
+        act.target ~= nil and
+        act.target.components.attunable ~= nil then
+        return act.target.components.attunable:LinkToPlayer(act.doer)
+    end
+end
+AddAction(ATTUNE)
+AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.ATTUNE, "dolongaction"))
+
+local REMOTERESURRECT = Action({ rmb=false, ghost_valid=true, ghost_exclusive=true })
+REMOTERESURRECT.str = STRINGS.ACTIONS.REMOTERESURRECT
+REMOTERESURRECT.id = "REMOTERESURRECT"
+REMOTERESURRECT.fn = function(act)
+    if act.doer ~= nil and act.doer.components.attuner ~= nil and act.doer:HasTag("playerghost") then
+        local target = act.doer.components.attuner:GetAttunedTarget("remoteresurrector")
+        if target ~= nil then
+            act.doer:PushEvent("respawnfromghost", { source = target })
+            return true
+        end
+    end
+end
+AddAction(REMOTERESURRECT)
+AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.REMOTERESURRECT, "remoteresurrect"))
