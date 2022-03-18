@@ -58,6 +58,8 @@ local PATCHES =
 		"playeractionpicker",
 		"inventoryitem",
 		"combat",
+		"playercontroller", --Leo: for firespreading.lua
+		"burnable", --Leo: for firespreading.lua
 	},
 	
 	PREFABS = {

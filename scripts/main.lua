@@ -7,6 +7,8 @@ modimport("scripts/actions.lua")
 modimport("scripts/recipes.lua")
 modimport("scripts/patches.lua")
 
+modimport("scripts/firespreading.lua")
+
 modimport("scripts/consolecommands.lua") --for better testing
 
 local ToLoad = require("to_load")
