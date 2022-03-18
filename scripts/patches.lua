@@ -59,6 +59,8 @@ local PATCHES =
 		"playercontroller",
 		"inventoryitem",
 		"combat",
+		"playercontroller", --Leo: for firespreading.lua
+		"burnable", --Leo: for firespreading.lua
 	},
 	
 	PREFABS = {
@@ -81,6 +83,8 @@ local PATCHES =
 		flower = "flower",
 		resurrectionstone = "resurrectionstone",
 		resurrectionstatue = "resurrectionstatue",
+		cave_entrance = "cave_entrance", -- Patch non-finished
+		cave_exit = "cave_exit",
 	},
 	
 	PLAYERS = {

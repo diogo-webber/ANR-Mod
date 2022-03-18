@@ -62,9 +62,10 @@ end
  ---------------------------------------------
 
 _G.c_reset = function ()
-    if not GetPlayer() then print("Paused? " .. tostring(IsHUDPaused()).. " | Player? ".. tostring(GetPlayer())) return end
-
-	_G.SetPause(true)
-	_G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()}, true)
-	_G.SetPause(false)
+    GetPlayer().HUD:Hide()
+	_G.TheFrontEnd:Fade(false, 2, function()					
+        --_G.SetPause(true)
+        _G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()}, true)
+        _G.SetPause(false)
+    end)
 end
