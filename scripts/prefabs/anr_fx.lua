@@ -20,8 +20,6 @@ local function MakeFx(t)
         inst.entity:SetCanSleep(false)
         inst.persists = false
 
-        inst.Transform:SetFromProxy(proxy.GUID)
-
         if t.sound ~= nil then
             inst.entity:AddSoundEmitter()
             inst:DoTaskInTime(t.sounddelay or 0, PlaySound, t.sound)

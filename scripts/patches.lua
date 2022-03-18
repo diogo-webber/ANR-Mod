@@ -56,6 +56,7 @@ local PATCHES =
 		"moisture",
 		"health",
 		"playeractionpicker",
+		"playercontroller",
 		"inventoryitem",
 		"combat",
 		"playercontroller", --Leo: for firespreading.lua
@@ -80,6 +81,8 @@ local PATCHES =
 		world = "forest",
 		--grass = "grass",
 		flower = "flower",
+		resurrectionstone = "resurrectionstone",
+		resurrectionstatue = "resurrectionstatue",
 		cave_entrance = "cave_entrance", -- Patch non-finished
 		cave_exit = "cave_exit",
 	},
@@ -121,6 +124,7 @@ local PATCHES =
 
 	WIDGETS = {
 		"statusdisplays",
+		"healthbadge",
 		"controls",
 	},
 

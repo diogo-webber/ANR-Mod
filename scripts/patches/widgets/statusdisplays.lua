@@ -12,7 +12,7 @@ local function UpdateRezButton(inst, self, enable)
             self.resurrectbuttonfx:GetAnimState():PlayAnimation("break")
             self.resurrectbuttonfx:Show()
             if self.resurrectbuttonfx:IsVisible() then
-                TheFocalPoint.SoundEmitter:PlaySound(self.heart.effigybreaksound)
+                GetPlayer().SoundEmitter:PlaySound("dontstarve/creatures/together/lavae/egg_deathcrack")
             end
         end
     end
@@ -39,7 +39,7 @@ return function(self)
 
     self.inst:ListenForEvent("gotnewattunement", function(owner, data)
         --can safely assume we are attuned if we just "got" an attunement
-        if data.proxy:IsAttunableType("remoteresurrector") then
+        if data.source:HasTag("remoteresurrector") then
             if self.rezbuttontask ~= nil then
                 self.rezbuttontask:Cancel()
             end
@@ -50,7 +50,7 @@ return function(self)
     self.inst:ListenForEvent("attunementlost", function(owner, data)
         --cannot assume that we are no longer attuned
         --to a type when we lose a single attunement!
-        if data.proxy:IsAttunableType("remoteresurrector") and
+        if data.source:HasTag("remoteresurrector") and
             not (owner.components.attuner ~= nil and owner.components.attuner:HasAttunement("remoteresurrector")) then
             if self.rezbuttontask ~= nil then
                 self.rezbuttontask:Cancel()
@@ -130,14 +130,14 @@ return function(self)
 
     function self:EnableResurrect(enable)
         if enable then
-            --self.heart:ShowEffigy()
+            self.heart:ShowEffigy()
             if self.isghostmode then
                 self.resurrectbutton:Show()
             else
                 self.resurrectbutton:Hide()
             end
         else
-            --self.heart:HideEffigy()
+            self.heart:HideEffigy()
             self.resurrectbutton:Hide()
         end
     end

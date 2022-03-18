@@ -26,8 +26,10 @@ end
 local _Action = Action
 Action = Class(function(self, data, priority, instant, rmb, distance, ...) 
     _Action(self, data, priority, instant, rmb, distance, ...)
-
-    self.priority = data.priority or 0
+    if not data then
+        data = {}
+    end
+    self.priority = priority or data.priority or 0
     self.rmb = rmb or data.rmb or nil
     self.canforce = data.canforce or nil
 
@@ -630,4 +632,12 @@ function _G.AddHauntableDropItemOrWork(inst)
         --end
         return ret
     end)
+end
+
+
+function _G.FunctionOrValue(func_or_val, ...)
+    if type(func_or_val) == "function" then
+        return func_or_val(...)
+    end
+    return func_or_val
 end

@@ -153,7 +153,7 @@ function WorldResetTimer:OnHide()
 end
 
 function WorldResetTimer:StartTimer()
-    local age = 20 --self.owner.Network:GetPlayerAge()
+    local age = GetClock():GetNumCycles() --self.owner.Network:GetPlayerAge()
     self.survived_message:SetString(
         age > 1 and
         string.format(STRINGS.UI.WORLDRESETDIALOG.SURVIVED_MSG, age) or
@@ -208,11 +208,7 @@ function WorldResetTimer:Reset()
 end
 
 function WorldResetTimer:UpdateCycles(cycles)
-    if self.owner:HasTag("playerghost") then
-        self.title:SetString(string.format(STRINGS.UI.WORLDRESETDIALOG.TITLE, cycles + 1))
-    else
-        self.title:SetString(string.format(STRINGS.UI.WORLDRESETDIALOG.TITLE_LATEJOIN, cycles + 1))
-    end
+    self.title:SetString(string.format(STRINGS.UI.WORLDRESETDIALOG.TITLE, cycles + 1))
 end
 
 function WorldResetTimer:UpdateCountdown(time)

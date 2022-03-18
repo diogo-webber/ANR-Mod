@@ -1,6 +1,3 @@
-local FindEntity = _G.FindEntity
-local BufferedAction = _G.BufferedAction
-
 local function notriding(inst)
 	return not inst.components.rider or not inst.components.rider:IsRiding()
 end
@@ -124,4 +121,22 @@ return function(self)
             end
         end	
     end 
+
+    function self:GetResurrectButtonAction()
+        return self.inst:HasTag("playerghost") and self.inst.components.attuner:HasAttunement("remoteresurrector") and
+            BufferedAction(self.inst, nil, ACTIONS.REMOTERESURRECT) or
+            nil
+    end
+    
+    function self:DoResurrectButton()
+        if not self:IsEnabled() then
+            return
+        end
+        local buffaction = self:GetResurrectButtonAction()
+        if buffaction == nil then
+            return
+        else
+            self.inst.components.locomotor:PushAction(buffaction, true)
+        end
+    end
 end

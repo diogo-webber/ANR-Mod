@@ -43,6 +43,8 @@ STRINGS.ANR_CUTSCENE = {
 
 -------------------------------------ACTIONS
 STRINGS.ACTIONS.HAUNT = "Haunt"
+STRINGS.ACTIONS.ATTUNE = "Attune"
+STRINGS.ACTIONS.REMOTERESURRECT = "Resurrect"
 -------------------------------------UI
 STRINGS.UI.HUD.ACTIVATE_RESURRECTION = "Activate Meat Effigy"
 
