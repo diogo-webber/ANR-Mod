@@ -20,6 +20,7 @@ local ToLoad = {
 		"depleted_grass",
 		"lifeinjector",
 		"reviver",
+		"anr_batcave",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",

@@ -46,7 +46,7 @@ return function(self)
     
     local _oldStopSmoldering = self.StopSmoldering
     function self:StopSmoldering(heatpct)
-        _oldStopSmoldering(self, heatpct)
+        _oldStopSmoldering(self)
         
         if self.inst.components.propagator ~= nil then
             self.inst.components.propagator:StopSpreading(true, heatpct)
@@ -75,10 +75,10 @@ return function(self)
 
         if not (self.burning or self.smoldering or self.inst:HasTag("fireimmune")) then
             self.smoldering = true
+            self.inst:AddTag("smolder")
             if self.onsmoldering then
                 self.onsmoldering(self.inst)
             end
-
             self.smoke = SpawnPrefab("smoke_plant")
             if self.smoke ~= nil then
                 if #self.fxdata == 1 and self.fxdata[1].follow then

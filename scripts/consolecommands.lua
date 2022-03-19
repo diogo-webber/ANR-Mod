@@ -28,30 +28,28 @@ function _G.c_select(inst)
     if not inst then
         inst = ConsoleWorldEntityUnderMouse()
     end
-    print("Selected "..tostring(inst or "<nil>") )
+    print("Selected: "..tostring(inst or "<nil>") )
     _G.SetDebugEntity(inst)
     return inst
 end
 
 function _G.we()
-    _G.GetPlayer().components.builder:GiveAllRecipes()
+    GetPlayer().components.builder:GiveAllRecipes()
     _G.c_sethunger(1)
     _G.c_sethealth(1)
     _G.c_setsanity(1)
     _G.c_speed(3)
+    GetPlayer().components.temperature:SetTemperature(25)
 
-    local wet = _G.GetPlayer().components.moisture
+    local wet = GetPlayer().components.moisture
     if wet then wet:SetMoistureLevel(0) end
 
-    if not _G.GetPlayer().components.health:IsInvincible() then
-        _G.c_godmode()
+    if not GetPlayer().components.health:IsInvincible() then
+        c_godmode()
     end
 end
 
  ---------------------------------------------
-
-local GetPlayer = _G.GetPlayer
-
 
 function _G.c_save()
     GetPlayer().components.autosaver:DoSave()
