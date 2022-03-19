@@ -35,6 +35,7 @@ return function(self)
         self.rim:Hide()
         self.hands:Hide()
         self.anim:Hide()
+        self.moonanim:Hide()
     end
 
 	self.text:MoveToFront()

@@ -685,3 +685,13 @@ function _G.FunctionOrValue(func_or_val, ...)
     end
     return func_or_val
 end
+
+local _LoadSavedSeasonData = SaveIndex.LoadSavedSeasonData
+function SaveIndex:LoadSavedSeasonData(...)
+    _LoadSavedSeasonData(self, ...)
+    local data = self.data.slots[self.current_slot].clock_data
+    local clock = GetClock()
+	if clock then
+        GetClock():OnLoad(data)
+    end
+end

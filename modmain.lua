@@ -15,5 +15,9 @@ env.BufferedAction = _G.BufferedAction
 env.TheInput = _G.TheInput
 env.TheSim = _G.TheSim
 env.Yield = _G.Yield
+env.SaveIndex = _G.SaveIndex
+env.GetClock = _G.GetClock
+env.GetWorld = _G.GetWorld
+env.GetPlayer = _G.GetPlayer
 
 modimport("scripts/main.lua")
