@@ -118,8 +118,7 @@ end
 
 function Attunable:OnLoad(data)
     if data then
-        self.attuend = data.attuned or false
-        if self.attuned then
+        if data.attuned then
             self:LinkToPlayer(GetPlayer(), true)
         end
     end
