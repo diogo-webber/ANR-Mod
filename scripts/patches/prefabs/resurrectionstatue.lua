@@ -40,14 +40,14 @@ local function PlayAttuneSound(inst)
     end
 end
 
-local function onbuilt(inst, data)
+local function onbuilt(inst)
     --Hack to auto-link without triggering fx or paying the cost again
     inst.components.attunable:SetOnAttuneCostFn(nil)
     inst.components.attunable:SetOnLinkFn(nil)
     inst.components.attunable:SetOnUnlinkFn(nil)
 
     inst.AnimState:PlayAnimation("place")
-    if inst.components.attunable:LinkToPlayer(data.builder) then
+    if inst.components.attunable:LinkToPlayer(GetPlayer()) then
         inst:DoTaskInTime(inst.AnimState:GetCurrentAnimationLength(), PlayAttuneSound)
         inst.AnimState:PushAnimation("attune_on")
     end
@@ -73,4 +73,6 @@ return function(inst)
     inst.components.hauntable:SetOnHauntFn(OnHaunt)
 
     inst:ListenForEvent("activateresurrection", inst.Remove)
+    inst:RemoveEventCallback("onbuilt", inst.event_listeners.onbuilt[inst][1])
+    inst:ListenForEvent( "onbuilt", onbuilt)
 end
