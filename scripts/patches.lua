@@ -59,6 +59,8 @@ local PATCHES =
 		"playercontroller",
 		"inventoryitem",
 		"combat",
+		"pickable",
+		"inventory",
 		"playercontroller", --Leo: for firespreading.lua
 		"burnable", --Leo: for firespreading.lua
 	},
@@ -78,8 +80,8 @@ local PATCHES =
 						"evergreen_burnt",
 						"evergreen_stump",				
 					 },
-		world = "forest",
-		--grass = "grass",
+		world = "world",
+		grass = "grass",
 		flower = "flower",
 		resurrectionstone = "resurrectionstone",
 		resurrectionstatue = "resurrectionstatue",

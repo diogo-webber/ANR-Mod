@@ -40,7 +40,6 @@ local function MakeFx(t)
         elseif t.tintalpha ~= nil then
             inst.AnimState:SetMultColour(t.tintalpha, t.tintalpha, t.tintalpha, t.tintalpha)
         end
-        --print(inst.AnimState:GetMultColour())
         if t.transform ~= nil then
             inst.AnimState:SetScale(t.transform:Get())
         end

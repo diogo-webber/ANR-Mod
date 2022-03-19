@@ -8,10 +8,6 @@ local function DefaultRangeCheck(doer, target)
     return dst <= 16
 end
 
-ACTIONS.LOOKAT.ghost_valid = true
-ACTIONS.WALKTO.ghost_valid = true
-ACTIONS.JUMPIN.ghost_valid = true
-
 local HAUNT = Action({ rmb=false, mindistance=2, ghost_valid=true, ghost_exclusive=true, canforce=true, rangecheckfn=DefaultRangeCheck })
 HAUNT.str = STRINGS.ACTIONS.HAUNT
 HAUNT.id = "HAUNT"
@@ -57,3 +53,18 @@ REMOTERESURRECT.fn = function(act)
 end
 AddAction(REMOTERESURRECT)
 AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.REMOTERESURRECT, "remoteresurrect"))
+
+-------------------------------------------------------
+ACTIONS.LOOKAT.ghost_valid = true
+ACTIONS.WALKTO.ghost_valid = true
+ACTIONS.JUMPIN.ghost_valid = true
+
+local _HEAL = ACTIONS.HEAL.fn
+ACTIONS.HEAL.fn = function(act, ...)
+    local target = act.target or act.doer
+    if act.invobject.components.maxhealer ~= nil then
+        return act.invobject.components.maxhealer:Heal(target)
+    else
+        return _HEAL(act, ...)
+    end
+end

@@ -36,7 +36,7 @@ return function(inst)
         setflowertype(inst)
     end
 
-    if _G.GetWorld():IsCave() then
+    if GetWorld():IsCave() then
         inst:DoPeriodicTask(30, function()
             if GetClock():IsDay() then
                 inst:DoTaskInTime(5.0 + math.random()*5.0, DieInDarkness)
@@ -44,9 +44,9 @@ return function(inst)
         end)
     end
     
-    local _oldOnSave =  inst.OnSave
+    local _OnSave =  inst.OnSave
     inst.OnSave = function(inst, data)
-        _oldOnSave(inst, data)
+        _OnSave(inst, data)
         data.planted = inst.planted
     end
 

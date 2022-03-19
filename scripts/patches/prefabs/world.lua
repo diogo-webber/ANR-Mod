@@ -1,4 +1,6 @@
 return function(inst)
-    inst:AddComponent("forestpetrification")
+    if inst.prefab == "forest" then
+        inst:AddComponent("forestpetrification")
+    end
     inst:AddComponent("worldreset")
 end

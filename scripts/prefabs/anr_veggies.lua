@@ -20,15 +20,12 @@ local function MakeVegStats(seedweight, hunger, health, perish_time, sanity, coo
     }
 end
 
-VEGGIES =
-{
-    berries_juicy = MakeVegStats(0, TUNING.CALORIES_SMALL,  TUNING.HEALING_TINY,  TUNING.PERISH_TWO_DAY, 0,
+VEGGIES["berries_juicy"] = MakeVegStats(0, TUNING.CALORIES_SMALL,  TUNING.HEALING_TINY,  TUNING.PERISH_TWO_DAY, 0,
                                     TUNING.CALORIES_MEDSMALL,  TUNING.HEALING_SMALL,    TUNING.PERISH_ONE_DAY, 0,
                                     {"med", nil, 0.7}, nil,
 									nil,
 									FOODTYPE.BERRY,
-									nil),
-}
+									nil)
 
 local function MakeVeggie(name)
     local assets =

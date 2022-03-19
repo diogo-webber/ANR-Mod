@@ -1039,7 +1039,6 @@ local function destroystructure(staff, target)
     local sounds = {}
     sounds = getsoundsforstructure(staff, target)
     for k,v in pairs(sounds) do
-        print("playing ",v)
         staff.SoundEmitter:PlaySound(v)
     end
 

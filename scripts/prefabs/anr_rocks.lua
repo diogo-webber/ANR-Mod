@@ -228,7 +228,7 @@ local function OnRockMoonCapsuleWorkFinished(inst)
     inst:AddTag("NOCLICK")
 
 	inst.AnimState:PlayAnimation("break")
-	inst:DoTaskInTime(2, ErodeAway) -- Leo: ErodeAway file?
+	inst:DoTaskInTime(2, ErodeAway)
 end
 
 local function rock_moon_shell()

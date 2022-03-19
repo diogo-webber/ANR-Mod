@@ -26,7 +26,6 @@ local function makefx(assetname, animname, soundname)
         local inst = CreateEntity()
 
         inst:AddTag("FX")
-        --[[Non-networked entity]]
         inst.entity:SetCanSleep(false)
         inst.persists = false
     

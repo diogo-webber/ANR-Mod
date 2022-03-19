@@ -24,6 +24,17 @@ return function(self)
     self.effigyanim.inst:ListenForEvent("animover", OnEffigyDeactivated)
     self.effigy = false
 
+    self.topperanim:GetAnimState():SetBank("status_meter")
+    self.topperanim:GetAnimState():SetBuild("status_meter")
+    self.topperanim:GetAnimState():SetMultColour(0, 0, 0, 1)
+    self.topperanim:SetScale(1, -1, 1)
+
+    local _SetPercent = self.SetPercent
+    function self:SetPercent(val, max, penaltypercent, ...)
+        _SetPercent(self, val, max, penaltypercent, ...)
+        self.topperanim:GetAnimState():SetPercent("anim", 1 - penaltypercent)
+    end
+
     function self:ShowEffigy()
         if not self.effigy then
             self.effigy = true

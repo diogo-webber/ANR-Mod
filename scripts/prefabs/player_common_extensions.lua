@@ -253,6 +253,9 @@ local function DoActualRez(inst, source, item)
         if source.prefab == "amulet" then
             inst.components.inventory:Equip(source)
             inst.sg:GoToState("amulet_rebirth")
+        elseif source.prefab == "reviver" then
+            inst.components.health:DeltaPenalty(TUNING.HEART_HEALTH_PENALTY)
+	        inst.sg:GoToState("reviver_rebirth", source)
         elseif source.prefab == "resurrectionstone" then
             inst.HUD.controls.inv:Hide()
             inst.HUD.controls.crafttabs:Hide()
@@ -261,8 +264,7 @@ local function DoActualRez(inst, source, item)
         elseif source.prefab == "resurrectionstatue" then
             inst.sg:GoToState("rebirth")
         elseif source:HasTag("multiplayer_portal") then
-            --inst.components.health:DeltaPenalty(TUNING.PORTAL_HEALTH_PENALTY)
-            --TODO
+            inst.components.health:DeltaPenalty(TUNING.PORTAL_HEALTH_PENALTY)
             source:PushEvent("rez_player")
             inst.sg:GoToState("portal_rez")
         end
@@ -288,6 +290,7 @@ local function DoActualRez(inst, source, item)
 
 			SpawnPrefab("pocketwatch_ground_fx").Transform:SetPosition(inst.Transform:GetWorldPosition())
 		else -- Telltale Heart
+            inst.components.health:DeltaPenalty(TUNING.HEART_HEALTH_PENALTY)
 	        inst.sg:GoToState("reviver_rebirth", item)
 		end
     end
@@ -415,8 +418,8 @@ local function OnRespawnFromGhost(inst, data) -- from ListenForEvent "respawnfro
         inst:DoTaskInTime(0, DoActualRez)
     elseif inst.sg.currentstate.name == "remoteresurrect" then
         inst:DoTaskInTime(0, DoMoveToRezSource, data.source, 24 * FRAMES)
-    elseif data.source.prefab == "reviver" then
-        inst:DoTaskInTime(0, DoActualRez, nil, data.source)
+    --elseif data.source.prefab == "reviver" then
+    --    inst:DoTaskInTime(0, DoActualRez, nil, data.source)
     elseif data.source.prefab == "pocketwatch_revive" then
         if not data.from_haunt then
 			inst.sg:GoToState("start_rewindtime_revive")
@@ -430,6 +433,7 @@ local function OnRespawnFromGhost(inst, data) -- from ListenForEvent "respawnfro
     elseif data.source.prefab == "amulet"
         or data.source.prefab == "resurrectionstone"
         or data.source.prefab == "resurrectionstatue"
+        or data.source.prefab == "reviver"
         or data.source:HasTag("multiplayer_portal") then
         inst:DoTaskInTime(9 * FRAMES, DoMoveToRezSource, data.source, --[[60-9]] 51 * FRAMES)
     else

@@ -1,3 +1,5 @@
+_G.UpvalueHacker = require("tools/upvaluehacker")
+
 modimport("scripts/constants.lua")
 modimport("scripts/strings.lua")
 modimport("scripts/tunings.lua")

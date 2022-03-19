@@ -228,7 +228,7 @@ local states=
         onenter = function(inst)
             inst.components.locomotor:StopMoving()
 
-            local player = inst:GetNearestPlayer()
+            local player = GetPlayer()
             if player ~= nil and inst:IsNear(player, 7) then
                 inst:FaceAwayFromPoint(player:GetPosition(), true)
             else

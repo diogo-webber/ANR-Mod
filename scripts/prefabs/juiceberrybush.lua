@@ -238,11 +238,12 @@ local function createbush(name, inspectname, berryname, master_postinit)
 
         local variance = math.random() * 4 - 2
 		inst.makewitherabletask = inst:DoTaskInTime(TUNING.WITHER_BUFFER_TIME + variance, function(inst) inst.components.pickable:MakeWitherable() end)
+        --inst:AddComponent("witherable")
 		    
         MakeLargeBurnable(inst)
         MakeMediumPropagator(inst)
         MakeHauntableIgnite(inst)
-        --AddHauntableCustomReaction(inst, OnHaunt, false, false, true) --Leo: Missing func
+        AddHauntableCustomReaction(inst, OnHaunt, false, false, true)
         inst:AddComponent("lootdropper")
 
         inst:AddComponent("workable")
@@ -255,7 +256,7 @@ local function createbush(name, inspectname, berryname, master_postinit)
         end
         inst:ListenForEvent("onwenthome", shake)
         MakeSnowCovered(inst)
-        MakeNoGrowInWinter(inst)
+        --MakeNoGrowInWinter(inst)
 
         master_postinit(inst)
 
@@ -270,9 +271,9 @@ local function juicy_postinit(inst)
     inst.components.pickable.getregentimefn = getregentimefn_juicy
     inst.components.pickable.max_cycles = TUNING.BERRYBUSH_JUICY_CYCLES + math.random(2)
     inst.components.pickable.cycles_left = inst.components.pickable.max_cycles
-    inst.components.pickable.jostlepick = true --Leo: Not in vanilla pickable
-    inst.components.pickable.droppicked = true --Leo: Not in vanilla pickable
-    inst.components.pickable.dropheight = 3.5 --Leo: Not in vanilla pickable
+    inst.components.pickable.jostlepick = true 
+    inst.components.pickable.droppicked = true 
+    inst.components.pickable.dropheight = 3.5 
 
     if inst.components.workable ~= nil then
         inst.components.workable:SetOnWorkCallback(onworked_juicy)

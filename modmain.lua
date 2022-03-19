@@ -8,7 +8,10 @@ env.Action = _G.Action
 env.ActionHandler = _G.ActionHandler
 env.AnimState = _G.AnimState
 env.SpawnPrefab = _G.SpawnPrefab
+env.FindEntity = _G.FindEntity
+env.BufferedAction = _G.BufferedAction
 env.TheInput = _G.TheInput
 env.TheSim = _G.TheSim
+env.Yield = _G.Yield
 
 modimport("scripts/main.lua")

@@ -14,21 +14,21 @@ local function triggernearbymorph(inst, quick, range)
     for i, v in ipairs(ents) do
         if v ~= inst and
             v.prefab == "grass" and
-            v.components.worldsettingstimer ~= nil and
-            not (v.components.worldsettingstimer:ActiveTimerExists("morphdelay") or
-                v.components.worldsettingstimer:ActiveTimerExists("morphing") or
-                v.components.worldsettingstimer:ActiveTimerExists("morphrelay")) then
+            v.components.timer ~= nil and
+            not (v.components.timer:TimerExists("morphdelay") or
+                v.components.timer:TimerExists("morphing") or
+                v.components.timer:TimerExists("morphrelay")) then
 
             count = count + 1
 
             if canmorph(v) and math.random() < .75 then
-                v.components.worldsettingstimer:StartTimer(
+                v.components.timer:StartTimer(
                     "morphing",
                     ((not quick or count > 3) and .75 + math.random() * 1.5) or
                     (.2 + math.random() * .2) * count
                 )
             else
-                v.components.worldsettingstimer:StartTimer("morphrelay", count * _G.FRAMES)
+                v.components.timer:StartTimer("morphrelay", count * FRAMES)
             end
         end
     end
@@ -39,7 +39,7 @@ local function triggernearbymorph(inst, quick, range)
 end
 
 local function testMorph(inst, worker)
-    if not _G.GetSeasonManager().iswinter
+    if not GetSeasonManager().iswinter
     and worker ~= nil
     and worker:HasTag("player")
     and math.random() < TUNING.GRASSGEKKO_MORPH_CHANCE then
@@ -68,17 +68,17 @@ local function onmorphtimer(inst, data)
                 return
             end
         end
-        inst.components.worldsettingstimer:StartTimer("morphdelay", GetRandomWithVariance(TUNING.GRASSGEKKO_MORPH_DELAY, TUNING.GRASSGEKKO_MORPH_DELAY_VARIANCE))
+        inst.components.timer:StartTimer("morphdelay", GetRandomWithVariance(TUNING.GRASSGEKKO_MORPH_DELAY, TUNING.GRASSGEKKO_MORPH_DELAY_VARIANCE))
         triggernearbymorph(inst, false)
     end
 end
 
 local function makemorphable(inst)
-    if inst.components.worldsettingstimer == nil then
-        inst:AddComponent("worldsettingstimer")
-        inst.components.worldsettingstimer:AddTimer("morphdelay", TUNING.GRASSGEKKO_MORPH_DELAY, TUNING.GRASSGEKKO_MORPH_ENABLED)
-        inst.components.worldsettingstimer:AddTimer("morphing", 1, TUNING.GRASSGEKKO_MORPH_ENABLED)
-        inst.components.worldsettingstimer:AddTimer("morphrelay", _G.FRAMES, TUNING.GRASSGEKKO_MORPH_ENABLED)
+    if inst.components.timer == nil then
+        inst:AddComponent("timer")
+        inst.components.timer:StartTimer("morphdelay", TUNING.GRASSGEKKO_MORPH_DELAY, not TUNING.GRASSGEKKO_MORPH_ENABLED)
+        inst.components.timer:StartTimer("morphing", 1, not TUNING.GRASSGEKKO_MORPH_ENABLED)
+        inst.components.timer:StartTimer("morphrelay", FRAMES, not TUNING.GRASSGEKKO_MORPH_ENABLED)
         inst:ListenForEvent("timerdone", onmorphtimer)
     end
 end
@@ -103,23 +103,24 @@ local function OnPreLoad(inst, data)
 end
 
 return function(inst)
-    local _old_dig_up = inst.components.workable.onfinish
+    inst:AddTag("renewable")
+    local _dig_up = inst.components.workable.onfinish
     inst.components.workable:SetOnFinishCallback(function(inst, worker)
         testMorph(inst, worker)
-        _old_dig_up(inst, worker)
+        _dig_up(inst, worker)
     end)
     
-    local _old_onpickedfn = inst.components.pickable.onpickedfn
+    local _onpickedfn = inst.components.pickable.onpickedfn
     inst.components.pickable.onpickedfn = function(inst, picker)
         testMorph(inst, picker)
-        _old_onpickedfn(inst, picker)
+        _onpickedfn(inst, picker)
     end
 
-    local _old_ontransplantfn = inst.components.pickable.ontransplantfn
+    local _ontransplantfn = inst.components.pickable.ontransplantfn
     inst.components.pickable.ontransplantfn = function(inst)
-        _old_ontransplantfn(inst)
+        _ontransplantfn(inst)
         makemorphable(inst)
-        inst.components.worldsettingstimer:StartTimer("morphdelay", _G.GetRandomWithVariance(TUNING.GRASSGEKKO_MORPH_DELAY, TUNING.GRASSGEKKO_MORPH_DELAY_VARIANCE))
-        
+        inst.components.timer:StartTimer("morphdelay", GetRandomWithVariance(TUNING.GRASSGEKKO_MORPH_DELAY, TUNING.GRASSGEKKO_MORPH_DELAY_VARIANCE))
     end
+    inst.OnPreLoad = OnPreLoad
 end

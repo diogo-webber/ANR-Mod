@@ -1,7 +1,6 @@
 require "prefabutil"
 
 local function growtree(inst)
-	print ("GROWTREE")
     inst.growtask = nil
     inst.growtime = nil
 	local tree = SpawnPrefab("evergreen_short") 
@@ -20,11 +19,11 @@ local function plant(inst, growtime)
     inst.growtime = GetTime() + growtime
     inst.growtask = inst:DoTaskInTime(growtime, growtree)
 
-    --[[local sapling = SpawnPrefab(inst._spawn_prefab or "pinecone_sapling")
+    local sapling = SpawnPrefab(inst._spawn_prefab or "pinecone_sapling")
     sapling:StartGrowing()
     sapling.Transform:SetPosition(inst.Transform:GetWorldPosition())
     sapling.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
-    inst:Remove()]]
+    inst:Remove()
 end
 
 local function ondeploy(inst, pt, deployer)
@@ -73,7 +72,7 @@ local function addcone(name, spawn_prefab, bank, build, anim)
 
         --MakeInventoryFloatable(inst, "small", 0.05, 0.9)
 
-        --inst._spawn_prefab = spawn_prefab
+        inst._spawn_prefab = spawn_prefab
 
         inst:AddComponent("tradable")
 

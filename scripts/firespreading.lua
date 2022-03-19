@@ -18,57 +18,57 @@ _G.DefaultIgniteFn = function (inst)
     end
 end
 
-local _oldMakeSmallBurnable = _G.MakeSmallBurnable
+local _MakeSmallBurnable = _G.MakeSmallBurnable
 _G.MakeSmallBurnable = function(inst, time, offset, structure)
     if structure then
-        _oldMakeSmallBurnable(inst, time, offset, structure)
+        _MakeSmallBurnable(inst, time, offset, structure)
     else
-        _oldMakeSmallBurnable(inst, time, offset)
+        _MakeSmallBurnable(inst, time, offset)
     end
     inst.components.burnable:SetBurnTime(time or 10)
 end
 
-local _oldMakeMediumBurnable = _G.MakeMediumBurnable
+local _MakeMediumBurnable = _G.MakeMediumBurnable
 _G.MakeMediumBurnable = function(inst, time, offset, structure)
     if structure then
-        _oldMakeMediumBurnable(inst, time, offset, structure)
+        _MakeMediumBurnable(inst, time, offset, structure)
     else
-        _oldMakeMediumBurnable(inst, time, offset)
+        _MakeMediumBurnable(inst, time, offset)
     end
     inst.components.burnable:SetBurnTime(time or 20)
 end
 
-local _oldMakeLargeBurnable = _G.MakeLargeBurnable
+local _MakeLargeBurnable = _G.MakeLargeBurnable
 _G.MakeLargeBurnable = function(inst, time, offset, structure)
     if structure then
-        _oldMakeLargeBurnable(inst, time, offset, structure)
+        _MakeLargeBurnable(inst, time, offset, structure)
     else
-        _oldMakeLargeBurnable(inst, time, offset)
+        _MakeLargeBurnable(inst, time, offset)
     end
     inst.components.burnable:SetBurnTime(time or 30)
 end
 
 --------------------------------------------------------------------------------
 
-local _oldMakeSmallPropagator = _G.MakeSmallPropagator
+local _MakeSmallPropagator = _G.MakeSmallPropagator
 _G.MakeSmallPropagator = function(inst)
-    _oldMakeSmallPropagator(inst)
+    _MakeSmallPropagator(inst)
     inst.components.propagator.decayrate = 0.5
     inst.components.propagator.propagaterange = 3 + math.random()*2
     inst.components.propagator.heatoutput = 3 + math.random()*2
 end
 
-local _oldMakeMediumPropagator = _G.MakeMediumPropagator
+local _MakeMediumPropagator = _G.MakeMediumPropagator
 _G.MakeMediumPropagator = function(inst)
-    _oldMakeMediumPropagator(inst)
+    _MakeMediumPropagator(inst)
     inst.components.propagator.decayrate = 0.5
     inst.components.propagator.propagaterange = 5 + math.random()*2
     inst.components.propagator.heatoutput = 5 + math.random()*3.5
 end
 
-local _oldMakeLargePropagator = _G.MakeLargePropagator
+local _MakeLargePropagator = _G.MakeLargePropagator
 _G.MakeLargePropagator = function(inst)
-    _oldMakeLargePropagator(inst)
+    _MakeLargePropagator(inst)
     inst.components.propagator.decayrate = 0.5
     inst.components.propagator.propagaterange = 6 + math.random()*2
     inst.components.propagator.heatoutput = 6 + math.random()*3.5
