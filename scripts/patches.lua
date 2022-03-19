@@ -85,7 +85,8 @@ local PATCHES =
 		flower = "flower",
 		resurrectionstone = "resurrectionstone",
 		resurrectionstatue = "resurrectionstatue",
-		cave_entrance = "cave_entrance", -- Patch non-finished
+		cave_entrance = "cave_entrance",
+		cavelight = "cavelight",
 		cave_exit = "cave_exit",
 	},
 	
@@ -128,6 +129,7 @@ local PATCHES =
 		"statusdisplays",
 		"healthbadge",
 		"controls",
+		"uiclock",
 	},
 
 	GLOBALCLASS = {

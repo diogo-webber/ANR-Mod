@@ -79,11 +79,6 @@ function Attunable:LinkToPlayer(player, isloading)
         end
     end
     self.attuned = true
-    -- self.attuned[player] = SpawnPrefab("attunable_classified")
-    -- if self.attunable_tag ~= nil then
-    --     self.attuned[player]:AddTag(self.attunable_tag)
-    -- end
-    -- self.attuned[player]:AttachToPlayer(player, self.inst)
 
     player:PushEvent("attuned", { prefab = self.inst.prefab, isloading = isloading })
     self.inst:ListenForEvent("onremove", self.onplayerremoved, player)

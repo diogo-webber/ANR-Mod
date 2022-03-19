@@ -68,3 +68,13 @@ ACTIONS.HEAL.fn = function(act, ...)
         return _HEAL(act, ...)
     end
 end
+
+local _activatestrfn = ACTIONS.ACTIVATE.strfn
+ACTIONS.ACTIVATE.strfn = function(act)
+    local targ = act.target
+    if targ.prefab == "cave_exit" or targ.prefab == "cave_entrance" then
+        return "MIGRATE"
+    end
+    return _activatestrfn(act)
+end
+

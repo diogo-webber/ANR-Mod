@@ -54,6 +54,8 @@ local ToLoad = {
 		Asset("ANIM", "anim/status_health.zip"),
 		Asset("ANIM", "anim/status_meter.zip"), 
 		Asset("ANIM", "anim/townportaltalisman.zip"), --TODO
+		
+		Asset("ANIM", "anim/cave_clock.zip"),
 
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
