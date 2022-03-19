@@ -41,7 +41,7 @@ return function(inst)
         if inst.components.growable ~= nil and not inst:HasTag("stump") then
             local stage = inst.components.growable.stage
             if STAGE_PETRIFY_ANIMS[stage] ~= nil then
-                if _G.POPULATING then
+                if POPULATING then
                     dopetrify(inst, stage, true)
                 else
                     inst.AnimState:PlayAnimation(STAGE_PETRIFY_ANIMS[stage])
@@ -53,7 +53,7 @@ return function(inst)
                 return
             end
         end
-        if not _G.POPULATING then
+        if not POPULATING then
             local fx = SpawnPrefab("petrified_trunk_break_fx")
             fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
             if inst.AnimState:IsCurrentAnimation("stump_short") then

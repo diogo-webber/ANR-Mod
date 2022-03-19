@@ -12,6 +12,17 @@ local function SmolderUpdate(inst, self)
         end
     end
 
+    if GetSeasonManager():IsRaining() then
+        -- smolder more slowly, or even unsmolder, if we're being rained on.
+        if nearbyheat > 0 then
+            local rainmod = 1.8 * GetSeasonManager().precip
+            self.smoldertimeremaining = self.smoldertimeremaining + SMOLDER_TICK_TIME * rainmod
+        else
+            -- Un-smolder at a fixed rate when there's no more heat, otherwise it takes foreeeever during gentle rain.
+            self.smoldertimeremaining = self.smoldertimeremaining + SMOLDER_TICK_TIME * 3.0
+        end
+    end
+
     -- smolder about twice as fast if there's lots of heat nearby
     local heatmod = math.clamp(Remap(nearbyheat, 20, 90, 1, 2.2), 1, 2.2)
 
@@ -32,8 +43,35 @@ return function(self)
 
     self.task = nil
     self.smolder_task = nil
+    
+    local _oldStopSmoldering = self.StopSmoldering
+    function self:StopSmoldering(heatpct)
+        _oldStopSmoldering(self, heatpct)
+        
+        if self.inst.components.propagator ~= nil then
+            self.inst.components.propagator:StopSpreading(true, heatpct)
+        end
 
-    self.StartWildfire = function(param)
+        if self.onstopsmoldering ~= nil then
+            self.onstopsmoldering(self.inst)
+        end
+    end
+
+    local _oldSmotherSmolder = self.SmotherSmolder
+    function self:SmotherSmolder(...)
+        _oldSmotherSmolder(self, ...)
+        self:StopSmoldering(-1)
+    end
+
+    local _oldExtinguish = self.Extinguish
+    function self:Extinguish(...)
+        _oldExtinguish(self, ...)
+        if self.inst.components.propagator then
+            self.inst.components.propagator.acceptsheat = true -- Bug Fix
+        end
+    end
+    
+    function self:StartWildfire()
 
         if not (self.burning or self.smoldering or self.inst:HasTag("fireimmune")) then
             self.smoldering = true

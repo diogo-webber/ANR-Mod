@@ -32,7 +32,7 @@ local function setflowertype(inst, name)
 end
 
 return function(inst)
-    if not _G.POPULATING then
+    if not POPULATING then
         setflowertype(inst)
     end
 

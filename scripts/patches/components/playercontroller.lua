@@ -1,3 +1,4 @@
+
 local function notriding(inst)
 	return not inst.components.rider or not inst.components.rider:IsRiding()
 end

@@ -1,17 +1,5 @@
 ACTIONS.SMOTHER.priority = 7
 
-ACTIONS.SMOTHER.fn = function(act)
-	if act.target.components.burnable and act.target.components.burnable:IsSmoldering() then
-		local smotherer = act.invobject or act.doer
-		act.target.components.burnable:SmotherSmolder(smotherer)
-        act.target:DoTaskInTime(3, function()
-            act.target.components.propagator.currentheat = 0
-            act.target.components.propagator.acceptsheat = true
-        end)
-		return true
-	end
-end
-
 _G.DefaultIgniteFn = function (inst)
 	if inst.components.burnable then
         inst.components.burnable:StartWildfire()
