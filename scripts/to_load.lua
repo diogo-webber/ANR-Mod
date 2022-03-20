@@ -22,6 +22,15 @@ local ToLoad = {
 		"reviver",
 		"anr_batcave",
 		"planted_tree",
+		--"fan_wheel",
+		"lava_pond",
+		"scorched_skeleton",
+		"scorchedground",
+
+		"meteorspawner",
+		"meteorwarning",
+		"shadowmeteor",
+		"burntground",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",

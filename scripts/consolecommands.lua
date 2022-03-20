@@ -3,7 +3,7 @@
 local c_sel = _G.c_sel
 
 function ConsoleCommandPlayer()
-    return (c_sel() ~= nil and c_sel():HasTag("player") and c_sel()) or _G.GetPlayer()
+    return (c_sel() ~= nil and c_sel():HasTag("player") and c_sel()) or GetPlayer()
 end
 
 function ConsoleWorldPosition()
@@ -45,7 +45,7 @@ function _G.we()
     if wet then wet:SetMoistureLevel(0) end
 
     if not GetPlayer().components.health:IsInvincible() then
-        c_godmode()
+        _G.c_godmode()
     end
 end
 

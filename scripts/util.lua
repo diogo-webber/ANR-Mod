@@ -825,3 +825,16 @@ function Map:CanPlacePrefabFilteredAtPoint(x, y, z, prefab)
     end
     return true
 end
+
+
+function Map:IsPassableAtPoint(x, y, z)
+    
+    local tx, ty = GetWorld().Map:GetTileCoordsAtPoint(x, y, z)
+	local actual_tile = GetWorld().Map:GetTile(tx, ty)
+
+    if actual_tile == _G.GROUND.IMPASSABLE then
+        return false
+    end
+    return true
+    
+end

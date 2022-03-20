@@ -3,6 +3,7 @@ return function(inst)
 
     if not (inst:IsCave() or inst:IsRuins() or inst:IsAtrium()) then
         inst:AddComponent("forestpetrification")
+        inst:AddComponent("worldmeteorshower")
     end
     
     inst:AddComponent("worldreset")
