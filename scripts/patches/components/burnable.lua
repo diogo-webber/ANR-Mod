@@ -15,7 +15,7 @@ local function SmolderUpdate(inst, self)
     if GetSeasonManager():IsRaining() then
         -- smolder more slowly, or even unsmolder, if we're being rained on.
         if nearbyheat > 0 then
-            local rainmod = 1.8 * GetSeasonManager().precip
+            local rainmod = 1.8 * GetSeasonManager().precip_rate
             self.smoldertimeremaining = self.smoldertimeremaining + SMOLDER_TICK_TIME * rainmod
         else
             -- Un-smolder at a fixed rate when there's no more heat, otherwise it takes foreeeever during gentle rain.

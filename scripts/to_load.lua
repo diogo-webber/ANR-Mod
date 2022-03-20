@@ -1,39 +1,51 @@
 local ToLoad = {
 	Prefabs = {
-		"multiplayer_portal",
-		"anr_rocks",
-		"rock_break_fx",
-		"twiggytree",
-		"moonrocknugget",
-		"twiggy_nut",
+
+	-- Modded:
+		"puppet_cutscene",
+		"explode_shadow_skin",
+
+	-- DST General:
 		"grassgekko",
 		"grassgekkoherd",
 		"juiceberrybush",
 		"dug_juicyberrybush",
 		"anr_veggies",
-		"ghost_transform_overlay_fx",
 		"petrify_fx",
 		"petrify_announce",
 		"flower_withered",
-		"rose",
-		"anr_fx",
 		"depleted_grass",
-		"lifeinjector",
-		"reviver",
+		"rose",
 		"anr_batcave",
 		"planted_tree",
+		"anr_fx",
+		"twiggytree",
+		"twiggy_nut",
 		--"fan_wheel",
+
+		-- Ghost System:
+			"multiplayer_portal",
+			"ghost_transform_overlay_fx",
+			"lifeinjector",
+			"reviver",
+	
+			
+	-- DF Setpeice:
 		"lava_pond",
 		"scorched_skeleton",
 		"scorchedground",
+		"burnt_marsh_bush",
 
+	-- Meteors Showers:
 		"meteorspawner",
 		"meteorwarning",
 		"shadowmeteor",
 		"burntground",
-
-		"puppet_cutscene",
-		"explode_shadow_skin",
+	
+	-- A New Reign:
+		"anr_rocks",
+		"rock_break_fx",
+		"moonrocknugget",
 	},
 	
 	Assets = {

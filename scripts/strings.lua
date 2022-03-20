@@ -1,4 +1,7 @@
--------------------------------------MODDED 
+-------------------------------------------------------------------------------
+--                           MODDED STRINGS                                  --
+-------------------------------------------------------------------------------
+
 STRINGS.ANR_CUTSCENE = {
     MAXWELL = {
         PUPPET1 = {
@@ -41,12 +44,19 @@ STRINGS.ANR_CUTSCENE = {
     }
 }
 
--------------------------------------ACTIONS
+-------------------------------------------------------------------------------
+--                           ACTIONS STRINGS                                 --
+-------------------------------------------------------------------------------
+
 STRINGS.ACTIONS.HAUNT = "Haunt"
 STRINGS.ACTIONS.ATTUNE = "Attune"
 STRINGS.ACTIONS.REMOTERESURRECT = "Resurrect"
 STRINGS.ACTIONS.ACTIVATE.MIGRATE = "Travel via"
--------------------------------------UI
+
+-------------------------------------------------------------------------------
+--                              UI STRINGS                                   --
+-------------------------------------------------------------------------------
+
 STRINGS.UI.HUD.ACTIVATE_RESURRECTION = "Activate Meat Effigy"
 
 STRINGS.UI.WORLDRESETDIALOG =
@@ -61,25 +71,44 @@ STRINGS.UI.WORLDRESETDIALOG =
     BUTTONPROMPT2 = "to Reset Now"
 }
 
--------------------------------------
-STRINGS.NAMES.ROCK_MOON = "Boulder"
-STRINGS.NAMES.ROCK_MOON_SHELL = "Suspicious Boulder"
-STRINGS.NAMES.MOONROCKNUGGET = "Moon Rock"
+-------------------------------------------------------------------------------
+--                            OTHERS STRINGS                                  --
+-------------------------------------------------------------------------------
 
-STRINGS.NAMES.ROCK_PETRIFIED_TREE = "Petrified Tree"
-
-STRINGS.NAMES.TWIGGYTREES_REGROWTH = "Twiggy Trees"
-STRINGS.NAMES.TWIGGYTREE = "Twiggy Tree"
-STRINGS.NAMES.TWIGGY_NUT = "Twiggy Tree Cone"
-STRINGS.NAMES.TWIGGY_NUT_SAPLING = "Twiggy Sapling"
-
-STRINGS.NAMES.GRASSGEKKO = "Grass Gekko"
-STRINGS.NAMES.GRASSGEKKOS = "Grass Gekko Morphing"
-
-STRINGS.NAMES.DUG_BERRYBUSH_JUICY = "Juicy Berry Bush"
-STRINGS.NAMES.BERRYBUSH_JUICY = "Juicy Berry Bush"
--------------------------------------
 STRINGS.PIG_TALK_PANICHAUNT = { "SPOOKY!", "AAAAH!!", "A GHOST! A GHOST!" }
 STRINGS.RABBIT_PANICHAUNT = { "SCARED!", "AAAH!!", "OHH!", "GHOST!" }
 
-STRINGS.NAMES.CAVE_EXIT = "Stairs"
+-------------------------------------------------------------------------------
+--                            NAMES STRINGS                                  --
+-------------------------------------------------------------------------------
+
+local STRINGS_NAMES = {
+
+    ROCK_MOON = "Boulder",
+    ROCK_MOON_SHELL = "Suspicious Boulder",
+    MOONROCKNUGGET = "Moon Rock",
+
+    ROCK_PETRIFIED_TREE = "Petrified Tree",
+
+    TWIGGYTREES_REGROWTH = "Twiggy Trees",
+    TWIGGYTREE = "Twiggy Tree",
+    TWIGGY_NUT = "Twiggy Tree Cone",
+    TWIGGY_NUT_SAPLING = "Twiggy Sapling",
+
+    GRASSGEKKO = "Grass Gekko",
+    GRASSGEKKOS = "Grass Gekko Morphing",
+
+    DUG_BERRYBUSH_JUICY = "Juicy Berry Bush",
+    BERRYBUSH_JUICY = "Juicy Berry Bush",
+
+    CAVE_EXIT = "Stairs",
+
+}
+
+-------------------------------------------------------------------------------
+
+for key, value in pairs(STRINGS_NAMES) do
+    STRINGS.NAMES[key] = value
+end
+
+-------------------------------------------------------------------------------

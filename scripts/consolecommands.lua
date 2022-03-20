@@ -92,3 +92,27 @@ function _G.c_reset()
             true)
     end)
 end
+
+---------------------------------------------
+
+local s = 16
+local is = 256
+
+function _G.c_setpiace(setpiace_name)
+    local pos = GetPlayer():GetPosition()
+    local setpiace = require("map/static_layouts/"..setpiace_name)
+    for _, v in pairs(setpiace.layers[2].objects) do
+        local x = (v.x-is)/s+pos.x
+        local z = (v.y-is)/s+pos.z
+        local ent = SpawnPrefab(v.type)
+        if ent then 
+            ent.Transform:SetPosition(x,0,z) 
+        end
+    end
+end
+
+---------------------------------------------
+
+function _G.c_meteor(level)
+    _G.c_spawn("meteorspawner").components.meteorshower:StartShower(level or 1)
+end
