@@ -689,9 +689,22 @@ end
 local _LoadSavedSeasonData = SaveIndex.LoadSavedSeasonData
 function SaveIndex:LoadSavedSeasonData(...)
     _LoadSavedSeasonData(self, ...)
-    local data = self.data.slots[self.current_slot].clock_data
+    local data = self.data and self.data.slots[self.current_slot].clock_data
     local clock = GetClock()
-	if clock then
+	if clock and data then
         GetClock():OnLoad(data)
     end
+end
+
+
+function _G.IsPassableAtPoint(x, y, z)
+    
+    local tx, ty = GetWorld().Map:GetTileCoordsAtPoint(x, y, z)
+	local actual_tile = GetWorld().Map:GetTile(tx, ty)
+
+    if actual_tile == _G.GROUND.IMPASSABLE then
+        return false
+    end
+    return true
+    
 end

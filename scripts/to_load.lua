@@ -21,6 +21,15 @@ local ToLoad = {
 		"lifeinjector",
 		"reviver",
 		"anr_batcave",
+		--"fan_wheel",
+		"lava_pond",
+		"scorched_skeleton",
+		"scorchedground",
+
+		"meteorspawner",
+		"meteorwarning",
+		"shadowmeteor",
+		"burntground",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",
