@@ -156,7 +156,7 @@ function MeteorShower:SpawnMeteor(mod)
 
     local fan_offset = FindValidPositionByFan(theta, radius, 30,
         function(offset)
-            return IsPassableAtPoint(x + offset.x, y + offset.y, z + offset.z)
+            return GetWorld().Map:IsPassableAtPoint(x + offset.x, y + offset.y, z + offset.z)
         end)
 
     if fan_offset ~= nil then
