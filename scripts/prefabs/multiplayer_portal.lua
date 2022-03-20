@@ -238,6 +238,8 @@ local function MakePortal(name, bank, build, assets, prefabs, common_postinit, m
 
         inst:ListenForEvent("rez_player", OnRezPlayer)
 
+        GetWorld():PushEvent("ms_registerspawnpoint", inst)
+
         if master_postinit ~= nil then
             master_postinit(inst)
         end

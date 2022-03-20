@@ -457,14 +457,6 @@ local function OnHauntLurePlant(inst)
     --return false
 end
 
-local function CustomOnHauntMushTree(inst, haunter)
-    if not inst:HasTag("stump") and math.random() < TUNING.HAUNT_CHANCE_HALF then
-        inst.components.growable:DoGrowth()
-        return true
-    end
-    return false
-end
-
 local function OnSpawnedFromHauntHound(inst)
     if inst.components.hauntable ~= nil then
         inst.components.hauntable:Panic()
@@ -1160,61 +1152,6 @@ local function CustomOnHauntWorm(inst, haunter)
     return false
 end
 
-local function onhauntworkevergreen(inst, haunter)
-    if inst.components.workable ~= nil and math.random() <= TUNING.HAUNT_CHANCE_OFTEN then
-        inst.components.workable:WorkedBy(haunter, 1)
-        inst.components.hauntable.hauntvalue = TUNING.HAUNT_SMALL
-        return true
-    end
-    return false
-end
-
-local function spawn_leif(target)
-    target.noleif = true
-    target.leifscale = target.components.growable.stages[target.components.growable.stage].leifscale or 1
-    target:DoTaskInTime(1 + math.random()*3, function() 
-        if target and not target:HasTag("stump") and not target:HasTag("burnt") and
-            target.components.growable and target.components.growable.stage <= 3 then
-            local leif = SpawnPrefab(target.build == "sparse" and "leif_sparse" or "leif")
-            if leif then
-                local scale = target.leifscale
-                local r,g,b,a = target.AnimState:GetMultColour()
-                leif.AnimState:SetMultColour(r,g,b,a)
-                
-                --we should serialize this?
-                leif.components.locomotor.walkspeed = leif.components.locomotor.walkspeed*scale
-                leif.components.combat.defaultdamage = leif.components.combat.defaultdamage*scale
-                leif.components.health.maxhealth = leif.components.health.maxhealth*scale
-                leif.components.health.currenthealth = leif.components.health.currenthealth*scale
-                leif.components.combat.hitrange = leif.components.combat.hitrange*scale
-                leif.components.combat.attackrange = leif.components.combat.attackrange*scale
-                
-                leif.Transform:SetScale(scale,scale,scale) 
-                leif.components.combat:SuggestTarget(chopper)
-                leif.sg:GoToState("spawn")
-                target:Remove()
-                
-                leif.Transform:SetPosition(target.Transform:GetWorldPosition())
-            end
-        end
-    end)
-end
-
-local function onhauntevergreen(inst, haunter)
-    if math.random() <= TUNING.HAUNT_CHANCE_SUPERRARE and
-        find_leif_spawn_target(inst) and
-        not (inst:HasTag("burnt") or inst:HasTag("stump")) then
-
-        inst.leifscale = GetGrowthStages(inst)[inst.components.growable.stage].leifscale or 1
-        spawn_leif(inst)
-
-        inst.components.hauntable.hauntvalue = TUNING.HAUNT_HUGE
-        inst.components.hauntable.cooldown_on_successful_haunt = false
-        return true
-    end
-    return onhauntworkevergreen(inst, haunter)
-end
-
 return function(inst)
     if table.contains(HauntableLaunch, tostring(inst.prefab)) then
         MakeHauntableLaunch(inst)
@@ -1284,11 +1221,6 @@ return function(inst)
     if inst.prefab == "lureplant" then
         MakeHauntableIgnite(inst, TUNING.HAUNT_CHANCE_OCCASIONAL)
         AddHauntableCustomReaction(inst, OnHauntLurePlant, false, false, true)
-    end
-
-    if inst.prefab == "mushtree_tall" or inst.prefab == "mushtree_medium" or inst.prefab == "mushtree_small" then
-        MakeHauntableIgnite(inst)
-        AddHauntableCustomReaction(inst, CustomOnHauntMushTree)
     end
 
     if inst.prefab == "bee" then
@@ -1625,37 +1557,6 @@ return function(inst)
         end)
     end
 
-    if inst.prefab == "deciduoustree" or inst.prefab == "deciduoustree_normal" or inst.prefab == "deciduoustree_tall" or 
-        inst.prefab == "deciduoustree_short" or inst.prefab == "deciduoustree_burnt" or inst.prefab == "deciduoustree_stump" then
-        if not inst.components.hauntable then inst:AddComponent("hauntable") end
-        inst.components.hauntable:SetOnHauntFn(function(inst, haunter)
-            local isstump = inst:HasTag("stump")
-            if not isstump and
-                inst.components.workable ~= nil and
-                math.random() <= TUNING.HAUNT_CHANCE_OFTEN then
-                inst.components.workable:WorkedBy(haunter, 1)
-                inst.components.hauntable.hauntvalue = TUNING.HAUNT_SMALL
-                return true
-            elseif inst:HasTag("burnt") then
-                return false
-            --#HAUNTFIX
-            --elseif inst.components.burnable ~= nil and
-                --not inst.components.burnable:IsBurning() and
-                --math.random() <= TUNING.HAUNT_CHANCE_VERYRARE then
-                --inst.components.burnable:Ignite()
-                --inst.components.hauntable.hauntvalue = TUNING.HAUNT_MEDIUM
-                --inst.components.hauntable.cooldown_on_successful_haunt = false
-                --return true
-            elseif not (isstump or inst.monster) and
-                math.random() <= TUNING.HAUNT_CHANCE_SUPERRARE then
-                inst:StartMonster(true)
-                inst.components.hauntable.hauntvalue = TUNING.HAUNT_HUGE
-                return true
-            end
-            return false
-        end)
-    end
-
     if inst.prefab == "dirtpile" then
         if not inst.components.hauntable then inst:AddComponent("hauntable") end
         inst.components.hauntable:SetHauntValue(TUNING.HAUNT_SMALL)
@@ -1671,12 +1572,6 @@ return function(inst)
             inst:Remove()
             return true
         end)
-    end
-
-    if inst.prefab == "evergreen" or inst.prefab == "evergreen_normal" or inst.prefab == "evergreen_tall" or inst.prefab == "evergreen_short" 
-        or inst.prefab == "evergreen_sparse" or inst.prefab == "evergreen_sparse_normal" or inst.prefab == "evergreen_sparse_tall" or inst.prefab == "evergreen_sparse_short" then
-        if not inst.components.hauntable then inst:AddComponent("hauntable") end
-        inst.components.hauntable:SetOnHauntFn(onhauntevergreen)
     end
 
     if inst.prefab == "slow_farmplot" or inst.prefab == "fast_farmplot" then

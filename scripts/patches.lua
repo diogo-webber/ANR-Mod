@@ -67,18 +67,35 @@ local PATCHES =
 	
 	PREFABS = {
 		maxwellintro = "maxwellintro",
+		catcoonden = "catcoonden",
+		rabbithole = "rabbithole",
+		carrot_planted = "carrot_planted",
+		flower_cave = {"flower_cave", "flower_cave_double", "flower_cave_triple"},
 		evergreens = {
-						"evergreen",
-						"evergreen_normal",
-						"evergreen_tall",
-						"evergreen_short",
-						"evergreen_sparse",
-						"evergreen_sparse_normal",
-						"evergreen_sparse_tall",
-						"evergreen_sparse_short",
-						"evergreen_burnt",
-						"evergreen_stump",				
-					 },
+			"evergreen",
+			"evergreen_normal",
+			"evergreen_tall",
+			"evergreen_short",
+			"evergreen_sparse",
+			"evergreen_sparse_normal",
+			"evergreen_sparse_tall",
+			"evergreen_sparse_short",
+			"evergreen_burnt",
+			"evergreen_stump",				
+		},
+		deciduoustree = {
+			"deciduoustree",
+			"deciduoustree_normal",
+			"deciduoustree_tall",
+			"deciduoustree_short",
+			"deciduoustree_burnt",
+			"deciduoustree_stump",				
+		},
+		mushtree = {
+			"mushtree_tall",
+			"mushtree_medium",
+			"mushtree_small",
+		},
 		world = "world",
 		grass = "grass",
 		flower = "flower",
@@ -133,6 +150,7 @@ local PATCHES =
 
 	GLOBALCLASS = {
 		entityscript = "EntityScript",
+		saveindex = "SaveIndex",
 	}
 }
 
@@ -200,3 +218,4 @@ end
 for file, name in pairs(PATCHES.GLOBALCLASS) do
 	AddGlobalClassPostConstruct(file, name, require("patches/"..file))
 end
+

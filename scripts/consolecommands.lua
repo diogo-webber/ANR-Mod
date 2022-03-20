@@ -57,6 +57,28 @@ end
 
 ---------------------------------------------
 
+function _G.c_regen()
+    GetPlayer().profile:Save(function()
+        _G.SaveGameIndex:EraseCurrent(function() 
+            _G.scheduler:ExecuteInTime(0.1, function() 
+                local function OnProfileSaved()
+                    local slot = _G.SaveGameIndex:GetCurrentSaveSlot()
+                    _G.SaveGameIndex:DeleteSlot(slot, function() 
+                               TheFrontEnd:Fade(false, 0.5, function () 
+                                    _G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = slot or _G.SaveGameIndex:GetCurrentSaveSlot()})
+                                end )
+                            end, true)
+                end
+                
+                -- Record the start of a new game
+                Profile:Save(OnProfileSaved)   
+            end)
+        end)
+    end)
+end
+
+---------------------------------------------
+
 function _G.c_reset()
     GetPlayer().HUD:Hide()
     _G.TheFrontEnd:HideConsoleLog()

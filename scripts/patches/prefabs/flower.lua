@@ -31,6 +31,10 @@ local function setflowertype(inst, name)
     end
 end
 
+local function OnGrowFromButterFly(inst)
+    inst.planted = true
+end
+
 return function(inst)
     if not POPULATING then
         setflowertype(inst)
@@ -55,5 +59,19 @@ return function(inst)
         setflowertype(inst, data ~= nil and data.anim or nil)
     end
 
-   
+    inst:ListenForEvent("growfrombutterfly", OnGrowFromButterFly)
+    local _onpicked = inst.components.pickable.onpickedfn
+    inst.components.pickable.onpickedfn = function(...)
+        if not inst.planted then
+            GetWorld():PushEvent("beginregrowth", inst)
+        end
+        _onpicked(...)
+    end
+    local _onburnt = inst.components.pickable.onburnt
+    inst.components.pickable.onburnt = function(...)
+        if not inst.planted then
+            GetWorld():PushEvent("beginregrowth", inst)
+        end
+        _onburnt(...)
+    end
 end

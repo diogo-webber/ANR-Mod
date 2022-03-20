@@ -3,6 +3,7 @@ env.require = _G.require
 
 env.TUNING = _G.TUNING
 env.STRINGS = _G.STRINGS
+env.GROUND = _G.GROUND
 
 env.PI = _G.PI
 env.Action = _G.Action
@@ -19,5 +20,8 @@ env.SaveIndex = _G.SaveIndex
 env.GetClock = _G.GetClock
 env.GetWorld = _G.GetWorld
 env.GetPlayer = _G.GetPlayer
+env.Map = _G.Map
+env.Profile = _G.Profile
+env.package = _G.package
 
 modimport("scripts/main.lua")

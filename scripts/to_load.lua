@@ -21,6 +21,7 @@ local ToLoad = {
 		"lifeinjector",
 		"reviver",
 		"anr_batcave",
+		"planted_tree",
 
 		"puppet_cutscene",
 		"explode_shadow_skin",
