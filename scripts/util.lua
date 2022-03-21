@@ -828,7 +828,6 @@ end
 
 
 function Map:IsPassableAtPoint(x, y, z)
-    
     local tx, ty = GetWorld().Map:GetTileCoordsAtPoint(x, y, z)
 	local actual_tile = GetWorld().Map:GetTile(tx, ty)
 
@@ -836,5 +835,4 @@ function Map:IsPassableAtPoint(x, y, z)
         return false
     end
     return true
-    
 end

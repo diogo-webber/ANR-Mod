@@ -21,6 +21,8 @@ local ToLoad = {
 		"anr_fx",
 		"twiggytree",
 		"twiggy_nut",
+		"hutch_fishbowl",
+		"hutch",
 		--"fan_wheel",
 
 		-- Ghost System:
