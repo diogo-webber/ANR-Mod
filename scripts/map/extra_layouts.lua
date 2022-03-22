@@ -43,7 +43,7 @@ local Extra_Layouts =
     }),
 
     --["BlueMushyStart"] = StaticLayout.Get("map.static_layouts/blue_mushy_entrance"),
-
+--[[
     ["AntlionSpawningGround"] =
     {
         type = LAYOUT.STATIC,
@@ -109,5 +109,6 @@ local Extra_Layouts =
         fill_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
         layout_position = LAYOUT_POSITION.CENTER,
         disable_transform = true
-    }),
+    }),]]
 }
+return Extra_Layouts

@@ -6,6 +6,13 @@ local ToLoad = {
 		"explode_shadow_skin",
 
 	-- DST General:
+		"multiplayer_portal",
+		"reviver",
+		"reviver",
+		"ghost_transform_overlay_fx",
+		"lifeinjector",
+		"twiggytree",
+		"twiggy_nut",
 		"grassgekko",
 		"grassgekkoherd",
 		"juiceberrybush",
@@ -18,23 +25,22 @@ local ToLoad = {
 		"rose",
 		"anr_batcave",
 		"planted_tree",
-		"anr_fx",
-		"twiggytree",
-		"twiggy_nut",
-		--"fan_wheel",
-
-		-- Ghost System:
-			"multiplayer_portal",
-			"ghost_transform_overlay_fx",
-			"lifeinjector",
-			"reviver",
-	
-			
-	-- DF Setpeice:
+		"fan_wheel",
+		"minifan",
+		"dragonfly_spawner",
+		"lavae_tooth",
+		"lavae_egg",
+		"lavae",
+		"lavae_pet",
+		"lavae_move_fx",
+		"lavae_cocoon",
 		"lava_pond",
 		"scorched_skeleton",
 		"scorchedground",
 		"burnt_marsh_bush",
+		"fan_wheel",
+		"minifan",
+		"anr_fx",
 
 	-- Meteors Showers:
 		"meteorspawner",
@@ -79,7 +85,7 @@ local ToLoad = {
 		Asset("ANIM", "anim/townportaltalisman.zip"), --TODO
 		
 		Asset("ANIM", "anim/cave_clock.zip"),
-
+		
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
 		Asset("ANIM", "anim/player_actions_farming.zip"),

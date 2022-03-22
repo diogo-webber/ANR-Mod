@@ -85,7 +85,10 @@ local function DoPrefabRenew(self, x, z, ents, renewable_set, max)
                 not (RoadManager ~= nil and RoadManager:IsOnRoad(x1, 0, z1)) then
                 local prefab = renewable_set.spawns[math.random(#renewable_set.spawns)]
                 if self.inst.Map:CanPlacePrefabFilteredAtPoint(x1, 0, z1) then
-                    SpawnPrefab(prefab).Transform:SetPosition(x1, 0, z1)
+                    local spawned = SpawnPrefab(prefab)
+                    if spawned then
+                        spawned.Transform:SetPosition(x1, 0, z1)
+                    end
                 end
             end
         end

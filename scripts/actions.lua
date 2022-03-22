@@ -54,10 +54,21 @@ end
 AddAction(REMOTERESURRECT)
 AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.REMOTERESURRECT, "remoteresurrect"))
 
+local NUZZLE = Action()
+NUZZLE.id = "NUZZLE"
+NUZZLE.fn = function(act)
+    if act.target then
+        --print(string.format("%s loves %s!", act.doer.prefab, act.target.prefab))
+        return true
+    end
+end
+AddAction(NUZZLE)
+
 -------------------------------------------------------
 ACTIONS.LOOKAT.ghost_valid = true
 ACTIONS.WALKTO.ghost_valid = true
 ACTIONS.JUMPIN.ghost_valid = true
+
 
 local _HEAL = ACTIONS.HEAL.fn
 ACTIONS.HEAL.fn = function(act, ...)

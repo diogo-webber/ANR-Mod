@@ -53,6 +53,8 @@ local PATCHES =
 	
 	COMPONENTS = {
 		"freezable",
+		"eater",
+		"hatchable",
 		"moisture",
 		"health",
 		"playeractionpicker",
@@ -71,6 +73,7 @@ local PATCHES =
 		rabbithole = "rabbithole",
 		carrot_planted = "carrot_planted",
 		flower_cave = {"flower_cave", "flower_cave_double", "flower_cave_triple"},
+		burntfood = {"charcoal", "ash"},
 		evergreens = {
 			"evergreen",
 			"evergreen_normal",
@@ -219,3 +222,5 @@ for file, name in pairs(PATCHES.GLOBALCLASS) do
 	AddGlobalClassPostConstruct(file, name, require("patches/"..file))
 end
 
+require("basehasslers").DRAGONFLY = nil --Has own setpiece
+require("basehasslers").GOOSEMOOSE = nil --Has own setpiece

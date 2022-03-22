@@ -34,6 +34,13 @@ return function(self)
         end
     end
 
+    local _SetVal = self.SetVal
+    function self:SetVal(val, ...)
+        local cur = self.currenthealth
+        _SetVal(self, val, ...)
+        self.inst:PushEvent("healthdeltavalue", {amount = cur-val})
+    end
+
     function self:SetPenalty(penalty)
         if not self.disable_penalty then
             --Penalty should never be less than 0% or ever above 75%.

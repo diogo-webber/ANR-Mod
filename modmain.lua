@@ -4,6 +4,7 @@ env.require = _G.require
 env.TUNING = _G.TUNING
 env.STRINGS = _G.STRINGS
 env.GROUND = _G.GROUND
+env.COLLISION = _G.COLLISION
 
 env.PI = _G.PI
 env.Action = _G.Action
@@ -23,5 +24,6 @@ env.GetPlayer = _G.GetPlayer
 env.Map = _G.Map
 env.Profile = _G.Profile
 env.package = _G.package
+env.distsq = _G.distsq
 
 modimport("scripts/main.lua")

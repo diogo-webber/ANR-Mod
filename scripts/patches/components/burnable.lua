@@ -43,6 +43,9 @@ return function(self)
 
     self.task = nil
     self.smolder_task = nil
+    function self:MakeDragonflyBait(...)
+        -- deprecated
+    end
     
     local _oldStopSmoldering = self.StopSmoldering
     function self:StopSmoldering(heatpct)

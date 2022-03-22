@@ -51,3 +51,13 @@ forest_map.Generate = function(...)
     end
     return val
 end
+
+local Layouts = require("map/layouts").Layouts
+local Extra_Layouts = require("map/extra_layouts")
+for key, value in pairs(Extra_Layouts) do
+    Layouts[key] = value
+end
+
+AddLevelPreInit("SURVIVAL_DEFAULT", function(level)
+	level.set_pieces["DragonflyArena"] = { count = 1, tasks = {"Frogs and bugs"} } --TEMP!!!!
+end)

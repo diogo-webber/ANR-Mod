@@ -50,3 +50,30 @@ _G.FOODTYPE =
     GOODIES = "GOODIES",
     MONSTER = "MONSTER", -- Added in for woby, uses the secondary foodype originally added for the berries
 }
+
+_G.FUELTYPE =
+{
+    BURNABLE = "BURNABLE",
+    USAGE = "USAGE",
+    MAGIC = "MAGIC", --V2C: use this one if u don't want there to be any associated fuel
+    CAVE = "CAVE",
+    NIGHTMARE = "NIGHTMARE",
+    ONEMANBAND = "ONEMANBAND",
+    PIGTORCH = "PIGTORCH",
+    CHEMICAL = "CHEMICAL",
+    WORMLIGHT = "WORMLIGHT",
+}
+
+_G.SPECIAL_EVENTS =
+{
+    NONE = "none",
+    HALLOWED_NIGHTS = "hallowed_nights",
+    WINTERS_FEAST = "winters_feast",
+	CARNIVAL = "crow_carnival",
+    YOTG = "year_of_the_gobbler",
+    YOTV = "year_of_the_varg",
+    YOTP = "year_of_the_pig",
+    YOTC = "year_of_the_carrat",
+    YOTB = "year_of_the_beefalo",
+}
+_G.WORLD_SPECIAL_EVENT = _G.SPECIAL_EVENTS.WINTERS_FEAST

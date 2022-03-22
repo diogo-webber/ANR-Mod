@@ -23,46 +23,9 @@ local function ToggleSpin(inst, spin)
     end
 end
 
-local function CreateFanWheelFX(proxy)
-    local parent = proxy.entity:GetParent()
-    if parent == nil then
-        --shouldn't.. mmkay?
-        return
-    end
-
-    local inst = CreateEntity()
-
-    inst:AddTag("FX")
-    
-    inst.persists = false
-
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddSoundEmitter()
-    inst.entity:AddFollower()
-
-    inst.Transform:SetFourFaced()
-
-    inst.AnimState:SetBank("fan_wheel")
-    inst.AnimState:SetBuild("fan_wheel")
-    inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetFinalOffset(1)
-
-    inst.entity:SetParent(parent.entity)
-    inst.Follower:FollowSymbol(parent.GUID, "swap_object", 0, -114, 0)
-
-    inst:DoPeriodicTask(0, AlignToTarget, nil, parent)
-    AlignToTarget(inst, parent)
-
-    inst._toggle = false
-    inst:ListenForEvent("isspinningdirty", function() ToggleSpin(inst, proxy._isspinning:value()) end, proxy)
-    ToggleSpin(inst, proxy._isspinning:value())
-
-    inst:ListenForEvent("onremove", function() inst:Remove() end, proxy)
-end
-
 local function SetSpinning(inst, isspinning)
-    inst._isspinning:set(isspinning)
+    inst._isspinning = isspinning
+    ToggleSpin(inst, inst._isspinning)
 end
 
 local function transfertostatemem(inst, sg)
@@ -112,19 +75,38 @@ local function StartUnequipping(inst, item)
     end
 end
 
+local function SetOwner(inst, owner)
+    inst:DoPeriodicTask(0, AlignToTarget, nil, owner)
+    AlignToTarget(inst, owner)
+end
+
 local function fn()
     local inst = CreateEntity()
 
+    inst:AddTag("FX")
+
     inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+
+    inst.Transform:SetFourFaced()
+
+    inst.AnimState:SetBank("fan_wheel")
+    inst.AnimState:SetBuild("fan_wheel")
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetFinalOffset(1)
+
+    inst._toggle = false
+
     -----------------------------------------------------
     inst:AddTag("FX")
 
-    inst:DoTaskInTime(0, CreateFanWheelFX)
-
-    inst._isspinning = net_bool(inst.GUID, "fan_wheel._isspinning", "isspinningdirty")
+    inst._isspinning = false
+    ToggleSpin(inst, inst._isspinning)
 
     inst.SetSpinning = SetSpinning
     inst.StartUnequipping = StartUnequipping
+    inst.SetOwner = SetOwner
 
     inst.persists = false
 
