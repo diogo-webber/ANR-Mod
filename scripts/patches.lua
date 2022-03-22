@@ -1,5 +1,6 @@
 local GenericPlayerFn = require("patches/prefabs/player")
 local AnyFn = require("patches/prefabs/any")
+local AnyHauntFn = require("patches/prefabs/any_haunt")
 
 local PATCHES = 
 {
@@ -194,7 +195,9 @@ for path, data in pairs(PATCHES.PREFABS) do
 end
 
 AddPlayerPostInit(GenericPlayerFn)
+
 AddPrefabPostInitAny(AnyFn)
+AddPrefabPostInitAny(AnyHauntFn)
 
 for _, file in ipairs(PATCHES.COMPONENTS) do
 	local fn = require("patches/components/"..file)

@@ -60,23 +60,22 @@ end
 function _G.c_regen()
     GetPlayer().profile:Save(function()
         _G.SaveGameIndex:EraseCurrent(function() 
-            _G.scheduler:ExecuteInTime(0.1, function() 
+            _G.scheduler:ExecuteInTime(0.1, function()
                 local function OnProfileSaved()
                     local slot = _G.SaveGameIndex:GetCurrentSaveSlot()
                     _G.SaveGameIndex:DeleteSlot(slot, function() 
-                               TheFrontEnd:Fade(false, 0.5, function () 
-                                    _G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = slot or _G.SaveGameIndex:GetCurrentSaveSlot()})
-                                end )
-                            end, true)
+                        TheFrontEnd:Fade(false, 0.5, function () 
+                            _G.StartNextInstance({reset_action=_G.RESET_ACTION.LOAD_SLOT, save_slot = slot or _G.SaveGameIndex:GetCurrentSaveSlot()})
+                        end )
+                    end, true)
                 end
                 
                 -- Record the start of a new game
-                Profile:Save(OnProfileSaved)   
+                Profile:Save(OnProfileSaved)
             end)
         end)
     end)
 end
-
 ---------------------------------------------
 
 function _G.c_reset()
@@ -84,11 +83,10 @@ function _G.c_reset()
     _G.TheFrontEnd:HideConsoleLog()
 
     _G.TheFrontEnd:Fade(false, 1, function()			
-        _G.StartNextInstance(
-            {
-                reset_action=_G.RESET_ACTION.LOAD_SLOT,
-                save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()
-            },
+        _G.StartNextInstance({
+            reset_action=_G.RESET_ACTION.LOAD_SLOT,
+            save_slot = _G.SaveGameIndex:GetCurrentSaveSlot()
+        },
             true)
     end)
 end
@@ -98,7 +96,7 @@ end
 local s = 16
 local is = 256
 
-function _G.c_setpiace(setpiace_name)
+function _G.c_setpeice(setpiace_name)
     local pos = GetPlayer():GetPosition()
     local setpiace = require("map/static_layouts/"..setpiace_name)
     for _, v in pairs(setpiace.layers[2].objects) do
@@ -106,7 +104,7 @@ function _G.c_setpiace(setpiace_name)
         local z = (v.y-is)/s+pos.z
         local ent = SpawnPrefab(v.type)
         if ent then 
-            ent.Transform:SetPosition(x,0,z) 
+            ent.Transform:SetPosition(x,0,z)
         end
     end
 end

@@ -1,3 +1,7 @@
+-----------------------------------------------------------------------
+--                       C O N S T A N T S                           --
+-----------------------------------------------------------------------
+
 local seg_time = 30
 local total_day_time = seg_time*16
 
@@ -5,23 +9,21 @@ local day_segs = 10
 local dusk_segs = 4
 local night_segs = 2
 
---default day composition. changes in winter, etc
 local day_time = seg_time * day_segs
 local dusk_time = seg_time * dusk_segs
 local night_time = seg_time * night_segs
 
 local wilson_attack = 34
+local wilson_attack_period = .5
 local wilson_health = 150
 local calories_per_day = 75
-
-local wilson_attack_period = .5
------------------------
 
 local perish_warp = 1
 
 -----------------------------------------------------------------------
 
-EXTRA_TUNING = {
+local EXTRA_TUNING = {
+
     PORTAL_HEALTH_PENALTY = 0.25,
     HEART_HEALTH_PENALTY = 0.125,
 
@@ -60,7 +62,7 @@ EXTRA_TUNING = {
 
     GHOST_LIGHT_OVERRIDE = .5,
 
-    MAX_HEALING_NORMAL = -0.25, --as a % of maximum health
+    MAX_HEALING_NORMAL = -0.25,
 
     PETRIFIED_TREE_SMALL = 2,
     PETRIFIED_TREE_NORMAL = 3,
@@ -69,10 +71,10 @@ EXTRA_TUNING = {
 
     TWIGGY_TREE_GROW_TIME =
     {
-        {base=1.5*day_time, random=0.5*day_time},   --short
-        {base=3*day_time, random=1*day_time},   --normal
-        {base=3*day_time, random=1*day_time},   --tall
-        {base=5*day_time, random=0.5*day_time}   --old
+        {base=1.5*day_time, random=0.5*day_time},   -- short
+        {base=3*day_time, random=1*day_time},   -- normal
+        {base=3*day_time, random=1*day_time},   -- tall
+        {base=5*day_time, random=0.5*day_time}   -- old
     },
 
     REPAIR_MOONROCK_NUGGET_HEALTH = 80/2,
@@ -103,11 +105,10 @@ EXTRA_TUNING = {
     MOONBASE_COMPLETE_WORK = 6,
     MOONBASE_DAMAGED_WORK = 4,
 
-    PETRIFICATION_CYCLE =
-                        {
-                            MIN_YEARS = .6,
-                            MAX_YEARS = .9,
-                        },
+    PETRIFICATION_CYCLE = {
+        MIN_YEARS = .6,
+        MAX_YEARS = .9,
+    },
 
     DAYLIGHT_SEARCH_RANGE = 30,
     ROSE_DAMAGE = 1,
@@ -282,6 +283,15 @@ EXTRA_TUNING = {
     LAVAE_HATCH_CRACK_TIME = 10,
     LAVAE_HATCH_TIME = total_day_time*2,
     LAVAE_HATCH_FAIL_TIME = night_time,
+    
+    HUTCH_RADIUS = 1.5,
+    HUTCH_DMG_PERIOD = 1.2,
+    HUTCH_PRICKLY_DAMAGE = 30,
+    HUTCH_HEALTH = wilson_health * 3,
+    HUTCH_RESPAWN_TIME = total_day_time * 1,
+    HUTCH_HEALTH_REGEN_AMOUNT = (wilson_health*3) * 3/60,
+    HUTCH_HEALTH_REGEN_PERIOD = 3,
+
 
 }
 

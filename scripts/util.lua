@@ -65,4 +65,3 @@ function _G.FunctionOrValue(func_or_val, ...)
     end
     return func_or_val
 end
-

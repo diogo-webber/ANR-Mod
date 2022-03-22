@@ -17,7 +17,7 @@ local ToLoad = {
 		"grassgekkoherd",
 		"juiceberrybush",
 		"dug_juicyberrybush",
-		"anr_veggies",
+		"berry_juicy",
 		"petrify_fx",
 		"petrify_announce",
 		"flower_withered",
@@ -34,6 +34,21 @@ local ToLoad = {
 		"lavae_pet",
 		"lavae_move_fx",
 		"lavae_cocoon",
+		"anr_fx",
+		"twiggytree",
+		"twiggy_nut",
+		"hutch_fishbowl",
+		"hutch",
+		--"fan_wheel",
+
+	-- Ghost System:
+		"multiplayer_portal",
+		"ghost_transform_overlay_fx",
+		"lifeinjector",
+		"reviver",
+
+			
+	-- DF Setpeice:
 		"lava_pond",
 		"scorched_skeleton",
 		"scorchedground",
@@ -191,7 +206,10 @@ local ToLoad = {
 
 		Asset("SHADER", "shaders/anim_bloom_ghost.ksh"),
 
-		Asset("ANIM", "anim/cave_exit.zip")
+		Asset("ANIM", "anim/cave_exit.zip"),
+
+		Asset("SOUNDPACKAGE", "sound/sound_mod_tutorial.fev"),
+		--Asset("SOUND", "sound/together.fsb"),
 	},
 }
 
