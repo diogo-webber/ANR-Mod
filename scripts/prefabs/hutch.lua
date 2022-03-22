@@ -8,6 +8,7 @@ local assets =
 
     Asset("SOUND", "sound/chester.fsb"),
     --Asset("SOUND", "sound/together.fsb"),
+    Asset("SOUND", "sound/hutch.fsb"),
 
     Asset("MINIMAP_IMAGE", "hutch"),
     Asset("MINIMAP_IMAGE", "hutch_musicbox"),
@@ -34,7 +35,8 @@ local brain = require "brains/chesterbrain"
 local sounds =
 {
     sleep = "dontstarve/creatures/together/hutch/sleep",
-    hurt = "dontstarve/creatures/together/hutch/hit",
+    --hurt = "dontstarve/creatures/together/hutch/hit",
+    hurt = "sound_mod_tutorial/creatures/hutch/hit",
     pant = "dontstarve/creatures/together/hutch/pant",
     death = "dontstarve/creatures/together/hutch/death",
     open = "dontstarve/creatures/together/hutch/open",
