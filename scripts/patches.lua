@@ -69,6 +69,8 @@ local PATCHES =
 	},
 	
 	PREFABS = {
+		compass = "compass",
+		heatrock = "heatrock",
 		maxwellintro = "maxwellintro",
 		catcoonden = "catcoonden",
 		rabbithole = "rabbithole",
@@ -150,6 +152,7 @@ local PATCHES =
 		"healthbadge",
 		"controls",
 		"uiclock",
+		"inventorybar",
 	},
 
 	GLOBALCLASS = {

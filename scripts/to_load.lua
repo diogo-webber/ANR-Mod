@@ -39,7 +39,9 @@ local ToLoad = {
 		"twiggy_nut",
 		"hutch_fishbowl",
 		"hutch",
-		--"fan_wheel",
+		"fan_wheel",
+		"minifan",
+		"anr_fx",
 
 	-- Ghost System:
 		"multiplayer_portal",
@@ -53,9 +55,6 @@ local ToLoad = {
 		"scorched_skeleton",
 		"scorchedground",
 		"burnt_marsh_bush",
-		"fan_wheel",
-		"minifan",
-		"anr_fx",
 
 	-- Meteors Showers:
 		"meteorspawner",
@@ -100,6 +99,10 @@ local ToLoad = {
 		Asset("ANIM", "anim/townportaltalisman.zip"), --TODO
 		
 		Asset("ANIM", "anim/cave_clock.zip"),
+		Asset("ANIM", "anim/swap_compass.zip"),
+		Asset("ANIM", "anim/compass_bg.zip"),
+		Asset("ANIM", "anim/compass_needle.zip"),
+		Asset("ANIM", "anim/compass_hud.zip"),
 		
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),

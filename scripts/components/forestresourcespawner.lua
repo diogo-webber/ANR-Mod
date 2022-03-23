@@ -100,6 +100,11 @@ local RENEW_ONEOF_TAGS = { "renewable", "grassgekko" }
 local function DoRenew(self)
     local targeti = math.min(math.floor(easing.inQuint(math.random(), 1, #self._spawnpts, 1)), #self._spawnpts)
     local target = self._spawnpts[targeti]
+    
+    if not target then
+        return
+    end
+
     table.remove(self._spawnpts, targeti)
     table.insert(self._spawnpts, target)
 

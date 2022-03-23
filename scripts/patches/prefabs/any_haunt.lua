@@ -7,7 +7,7 @@ local HauntableLaunch = {
     "beeswax", "blowdart_sleep", "blowdart_fire", "blowdart_pipe",
     "blowdart_walrus", "blueprint", "boneshard", "book_tentacles", "book_birds",
     "book_brimstone", "book_sleep", "book_gardening", "boomerang", "brush",
-    "bugnet", "cactus_flower", "cane", "chester_eyebone", "compass", "coontail",
+    "bugnet", "cactus_flower", "cane", "chester_eyebone", "coontail",
     "cutstone", "deerclops_eyeball", "diviningrod", "dragon_scales",
     "eyeturret_item", "featherfan", "fence_gate_item", "fence_item",
     "fertilizer", "fishingrod", "glommerflower", "glommerfuel", "glommerwings",
