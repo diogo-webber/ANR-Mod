@@ -1,4 +1,5 @@
 local ispenaltyreworked = true
+
 return function(self)
     function self:SetCurrentHealth(amount)
         self.currenthealth = amount

@@ -211,12 +211,12 @@ local function CheckBattery(inst)
     if inst._pointybattery ~= pointybattery then
         if pointybattery ~= nil then
             if inst._pointybattery == nil then
-                --inst:AddComponent("damagereflect")
-                --inst.components.damagereflect:SetDefaultDamage(TUNING.HUTCH_PRICKLY_DAMAGE)
+                inst:AddComponent("damagereflect")
+                inst.components.damagereflect:SetDefaultDamage(TUNING.HUTCH_PRICKLY_DAMAGE)
                 inst:ListenForEvent("onreflectdamage", OnReflectDamage)
             end
         elseif inst._pointybattery ~= nil then
-            --inst:RemoveComponent("damagereflect")
+            inst:RemoveComponent("damagereflect")
             inst:RemoveEventCallback("onreflectdamage", OnReflectDamage)
         end
         inst._pointybattery = pointybattery
