@@ -41,7 +41,7 @@ local ToLoad = {
 		"hutch",
 		"fan_wheel",
 		"minifan",
-		"anr_fx",
+		"arrowsign",
 
 	-- Ghost System:
 		"multiplayer_portal",
@@ -103,6 +103,7 @@ local ToLoad = {
 		Asset("ANIM", "anim/compass_bg.zip"),
 		Asset("ANIM", "anim/compass_needle.zip"),
 		Asset("ANIM", "anim/compass_hud.zip"),
+		Asset("ANIM", "anim/ui_board_5x3.zip"),
 		
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),
 		Asset("ANIM", "anim/player_actions_cowbell.zip"),

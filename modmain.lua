@@ -5,6 +5,10 @@ env.TUNING = _G.TUNING
 env.STRINGS = _G.STRINGS
 env.GROUND = _G.GROUND
 env.COLLISION = _G.COLLISION
+env.RECIPETABS = _G.RECIPETABS
+env.TECH = _G.TECH
+env.Ingredient = _G.Ingredient
+env.Recipe = _G.Recipe
 
 env.PI = _G.PI
 env.Action = _G.Action

@@ -77,3 +77,25 @@ _G.SPECIAL_EVENTS =
     YOTB = "year_of_the_beefalo",
 }
 _G.WORLD_SPECIAL_EVENT = _G.SPECIAL_EVENTS.WINTERS_FEAST
+
+_G.MAX_WRITEABLE_LENGTH = 200
+
+_G.CHARACTER_INGREDIENT =
+{
+    --NOTE: Value is used as key for NAME string and inventory image
+    HEALTH = "decrease_health",
+    MAX_HEALTH = "half_health",
+    SANITY = "decrease_sanity",
+    MAX_SANITY = "half_sanity",
+    OLDAGE = "decrease_oldage",
+}
+
+--Character ingredient amounts must be multiples of 5
+_G.CHARACTER_INGREDIENT_SEG = 5
+
+_G.TECH_INGREDIENT =
+{
+    --NOTE: Value is used as key for NAME string and inventory image
+    --NOTE: Must be name of the tech + "_material"
+    SCULPTING = "sculpting_material",
+}

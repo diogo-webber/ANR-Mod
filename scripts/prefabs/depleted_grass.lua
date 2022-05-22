@@ -1,15 +1,15 @@
 local assets =
 {
-    Asset("ANIM", "anim/grass.zip"),
-    Asset("ANIM", "anim/grass1.zip"),
+    Asset("ANIM", "anim/grass_anr.zip"),
+    Asset("ANIM", "anim/grass1_anr.zip"),
     Asset("ANIM", "anim/grass_diseased_build.zip"),
     Asset("SOUND", "sound/common.fsb"),
 }
 
 local grasspart_assets =
 {
-    Asset("ANIM", "anim/grass.zip"),
-    Asset("ANIM", "anim/grass1.zip"),
+    Asset("ANIM", "anim/grass_anr.zip"),
+    Asset("ANIM", "anim/grass1_anr.zip"),
 }
 
 local prefabs =
@@ -201,7 +201,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("grass.png")
 
     inst.AnimState:SetBank("grass")
-    inst.AnimState:SetBuild("grass1")
+    inst.AnimState:SetBuild("grass1_anr")
     inst.AnimState:PlayAnimation("idle", true)
 
     inst:AddTag("plant")
@@ -258,7 +258,7 @@ local function grasspart_fn()
     inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("grass")
-    inst.AnimState:SetBuild("grass1")
+    inst.AnimState:SetBuild("grass1_anr")
     inst.AnimState:PlayAnimation("grass_part")
     inst.AnimState:SetFinalOffset(1)
 

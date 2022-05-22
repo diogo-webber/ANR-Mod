@@ -64,6 +64,29 @@ NUZZLE.fn = function(act)
 end
 AddAction(NUZZLE)
 
+local WRITE = Action()
+WRITE.str = STRINGS.ACTIONS.WRITE
+WRITE.id = "WRITE"
+WRITE.fn = function(act)
+    if act.doer ~= nil and
+        act.target ~= nil and
+        act.target.components.writeable ~= nil and
+        not act.target.components.writeable:IsWritten() then
+
+        if act.target.components.writeable:IsBeingWritten() then
+            return false, "INUSE"
+        end
+
+        --Silent fail for writing in the dark
+        if _G.CanEntitySeeTarget(act.doer, act.target) then
+            act.target.components.writeable:BeginWriting(act.doer)
+        end
+        return true
+    end
+end
+AddAction(WRITE)
+AddStategraphActionHandler("wilson", ActionHandler(ACTIONS.WRITE, "doshortaction"))
+
 -------------------------------------------------------
 ACTIONS.LOOKAT.ghost_valid = true
 ACTIONS.WALKTO.ghost_valid = true

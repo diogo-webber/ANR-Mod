@@ -53,6 +53,7 @@ local PATCHES =
 	},
 	
 	COMPONENTS = {
+		"placer",
 		"freezable",
 		"eater",
 		"hatchable",
@@ -110,6 +111,7 @@ local PATCHES =
 		cave_entrance = "cave_entrance",
 		cavelight = "cavelight",
 		cave_exit = "cave_exit",
+		homesign = {"homesign", "homesign_placer"},
 	},
 	
 	PLAYERS = {
@@ -144,11 +146,12 @@ local PATCHES =
 	},
 
 	SCREENS = {
-		--"exmaple",
+		"playerhud",
 	},
 
 	WIDGETS = {
 		"statusdisplays",
+		"textedit",
 		"healthbadge",
 		"controls",
 		"uiclock",
